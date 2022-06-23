@@ -1,0 +1,3 @@
+grpcio>=1.44.0
+coverage2clover
+coveragepy-lcov
