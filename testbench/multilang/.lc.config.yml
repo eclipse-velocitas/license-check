@@ -1,0 +1,10 @@
+whitelist-file-path: ./whitelist.txt
+scan-dirs:
+  - path: cpp-proj
+    cpp-conan-included-profile-files:
+      - conan_profile
+  - path: python-proj
+    python-version: 3
+    python-pip-included-requirement-files:
+      - requirements.txt
+  - path: rust-proj

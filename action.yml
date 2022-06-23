@@ -1,0 +1,37 @@
+# /********************************************************************************
+# * Copyright (c) 2022 Contributors to the Eclipse Foundation
+# *
+# * See the NOTICE file(s) distributed with this work for additional
+# * information regarding copyright ownership.
+# *
+# * This program and the accompanying materials are made available under the
+# * terms of the Apache License 2.0 which is available at
+# * http://www.apache.org/licenses/LICENSE-2.0
+# *
+# * SPDX-License-Identifier: Apache-2.0
+# ********************************************************************************/
+
+name: Check Licenses
+description: Checks all licenses of a software project
+inputs:
+  generate-notice-file:
+    description: Shall a notice file be output for all found licenses?
+    default: true
+  notice-file-name:
+    description: Name of the generated markdown license report. File extension will be added by the action.
+    default: NOTICE-GENERATED
+  fail-on-violation:
+    description: If true, fails the action if a non-whitelisted license is found. Defaults to true.
+    default: true
+  config-file-path:
+    description: Path to the config file for the license checker.
+    required: true
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.generate-notice-file }}
+    - ${{ inputs.notice-file-name }}
+    - ${{ inputs.fail-on-violation }}
+    - ${{ inputs.config-file-path }}

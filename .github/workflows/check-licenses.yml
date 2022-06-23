@@ -1,0 +1,51 @@
+# /********************************************************************************
+# * Copyright (c) 2022 Contributors to the Eclipse Foundation
+# *
+# * See the NOTICE file(s) distributed with this work for additional
+# * information regarding copyright ownership.
+# *
+# * This program and the accompanying materials are made available under the
+# * terms of the Apache License 2.0 which is available at
+# * http://www.apache.org/licenses/LICENSE-2.0
+# *
+# * SPDX-License-Identifier: Apache-2.0
+# ********************************************************************************/
+
+name: Check licenses
+
+on:
+  workflow_dispatch:
+  workflow_call:
+  push:
+    # Run only on branches/commits and not tags
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check-licenses:
+    runs-on: ubuntu-latest
+    name: Check Software Licenses
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Clone License Check Repo
+        uses: actions/checkout@v3
+        with:
+          repository: eclipse-velocitas/license-check
+          ref: v1
+          path: .github/actions/license-check
+
+      - id: run-license-checker
+        name: Run License Checker
+        uses: ./.github/actions/license-check
+        with:
+          config-file-path: ./.licensechecker.yml
+          fail-on-violation: false
+          notice-file-name: "NOTICE-3RD-PARTY-CONTENT"

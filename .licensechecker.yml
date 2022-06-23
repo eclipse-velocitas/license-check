@@ -1,0 +1,4 @@
+whitelist-file-path: ./whitelist.txt
+scan-dirs:
+  - path: ./src
+    python-version: 3
