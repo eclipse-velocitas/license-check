@@ -76,24 +76,27 @@ def _read_used_actions_from_yaml(text_io: TextIO) -> set[DependencyInfo]:
     """
     used_actions: set[DependencyInfo] = set()
     data = yaml.load(text_io, Loader=SafeLoader)
-    jobs: Dict = data["jobs"]
+    if "jobs" in data:
+        jobs: Dict = data["jobs"]
 
-    for _, job_settings in jobs.items():
-        if "steps" not in job_settings:
-            continue
-
-        steps = job_settings["steps"]
-        for step in steps:
-            if "uses" not in step:
+        for _, job_settings in jobs.items():
+            if "steps" not in job_settings:
                 continue
 
-            used_action: str = step["uses"]
-            if used_action.find("@") != -1:
-                action_info = _extract_action_info(used_action)
+            steps = job_settings["steps"]
+            for step in steps:
+                if "uses" not in step:
+                    continue
 
-                used_actions.add(
-                    DependencyInfo(action_info.repository, action_info.version, [])
-                )
+                used_action: str = step["uses"]
+                if used_action.find("@") != -1:
+                    action_info = _extract_action_info(used_action)
+
+                    used_actions.add(
+                        DependencyInfo(action_info.repository, action_info.version, [])
+                    )
+    else:
+        print(f"Ignoring malformed workflow '{text_io.name}' - missing 'jobs' section")
 
     return used_actions
 
