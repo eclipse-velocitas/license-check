@@ -40,5 +40,7 @@ ENV CONAN_USER_HOME=/root
 ENV CARGO_HOME=/root/.cargo
 ENV RUSTUP_HOME=/root/.rustup
 
+COPY ./patches/ /
+
 # Run the Python3 Github Action wrapper
 ENTRYPOINT ["python3", "-u", "/action.py"]

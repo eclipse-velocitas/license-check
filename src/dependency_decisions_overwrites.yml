@@ -14,6 +14,13 @@
 
 ---
 - - :license
+  - libcurl
+  - CURL
+  - :who: BjoernAtBosch (Bjoern.Hornburg@de.bosch.com)
+    :why: https://curl.se/docs/copyright.html
+    :versions: []
+    :when: 2022-08-30 16:12:04.826121174 Z
+- - :license
   - protobuf
   - Google License
   - :who: Google Inc
