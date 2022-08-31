@@ -11,7 +11,13 @@ module LicenseFinder
     def current_packages
       install_command = 'conan install .'
       info_command = 'conan info .'
-      Dir.chdir(project_path) { Cmd.run(install_command) }
+      _stdout, _stderr, _status = Dir.chdir(project_path) { Cmd.run(install_command) }
+      if not _status.success?
+        logger.info self.class, "Error while running 'conan install':"
+        logger.debug self.class, "#{_stdout}"
+        logger.debug self.class, "#{_stderr}"
+        logger.info self.class, "Most/all packages will be rated having an unknown license!"
+      end
       info_output, _stderr, _status = Dir.chdir(project_path) { Cmd.run(info_command) }
 
       info_parser = ConanInfoParser.new
