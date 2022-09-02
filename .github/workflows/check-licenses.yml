@@ -31,9 +31,9 @@ jobs:
       - name: Clone License Check Repo
         uses: actions/checkout@v3
         with:
-          repository: eclipse-velocitas/license-check
+          repository: softwaredefinedvehicle/license-check
+          ref: fix/conan_issues
           path: .github/actions/license-check
-          ref: main
 
       - name: Run License Checker
         id: checker
