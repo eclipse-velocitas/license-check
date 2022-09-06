@@ -52,28 +52,32 @@ def get_args():
     return parser.parse_args()
 
 
-def commit_notice_file_if_dirty(
-    repo_root_path: str, notice_file_name: str, push: bool = True
-) -> None:
-    """Commit the generated notice file as the given committer.
+def is_dirty(repo_root_path: str, file_path: str) -> bool:
+    """Return true is the specified file is changed ("is dirty"); false otherwise.
 
     Args:
         repo_root_path (str): The path to the root of the repository.
-        notice_file_name (str): Name of the notice file to commit.
-        push (bool): Should the commit be pushed to the remote.
+        file_path (str): The path to the file to check.
     """
     repo = Repo(repo_root_path)
-    author = Actor("Github Automation", "github-automation@users.noreply.github.com")
-    repo.index.add(f"{notice_file_name}.md")
+    return repo.is_dirty(path=f"{repo_root_path}/{file_path}")
 
-    if repo.is_dirty():
-        repo.index.commit(
-            f"Update {notice_file_name}.md", author=author, committer=author
-        )
 
-        if push:
-            origin = repo.remote(name="origin")
-            origin.push()
+def output_update_hint(repo_root_path: str, notice_file_name: str) -> None:
+    """Output a hint that the notice file needs being manually updated.
+
+    Args:
+        repo_root_path (str): The path to the root of the repository.
+        notice_file_name (str): Name of the notice file to check.
+    """
+    print(f"::warning::{notice_file_name} needs being updated!")
+    print(f"You may copy the updated contents from here:")
+    print(f"=========================================================================================================================")
+    print(f"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv")
+    with open(f"{repo_root_path}/{notice_file_name}", "r") as f:
+        print(f.read())
+    print(f"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    print(f"=========================================================================================================================")
 
 
 def read_config_file(config_file_path: str) -> Any:
@@ -117,16 +121,22 @@ def main():
         print(f"::error::{err}")
         sys.exit(-1)
 
+    if args.generate_notice_file:
+        print_step("Generating notice file")
+        notice_file_path = f"{args.notice_file_name}.md"
+        generate_notice_file(
+            origin_to_licenses, f"{github_workspace}/{notice_file_path}"
+        )
+        if is_dirty(github_workspace, notice_file_path):
+            output_update_hint(github_workspace, notice_file_path)
+            print("::set-output name=notice-file-is-dirty::true")
+        else:
+            print("::set-output name=notice-file-is-dirty::false")
+        print(f"::set-output name=notice-file-path::{notice_file_path}")
+
     if not licenses_are_valid and args.fail_on_violation:
         print("::error::License check failed. At least one invalid license found!")
         sys.exit(1)
-
-    if args.generate_notice_file:
-        print_step("Generating notice file")
-        generate_notice_file(
-            origin_to_licenses, f"{github_workspace}/{args.notice_file_name}.md"
-        )
-        commit_notice_file_if_dirty(github_workspace, args.notice_file_name)
 
 
 if __name__ == "__main__":
