@@ -64,13 +64,13 @@ def is_dirty(repo_root_path: str, file_path: str) -> bool:
 
 
 def output_update_hint(repo_root_path: str, notice_file_name: str) -> None:
-    """Output a hint that the notice file needs being manually updated.
+    """Output a hint that the notice file needs to be updated manually.
 
     Args:
         repo_root_path (str): The path to the root of the repository.
         notice_file_name (str): Name of the notice file to check.
     """
-    print(f"::warning::{notice_file_name} needs being updated!")
+    print(f"::warning::{notice_file_name} needs to be updated!")
     print(f"You may copy the updated contents from here:")
     print(f"=========================================================================================================================")
     print(f"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv")
