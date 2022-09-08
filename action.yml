@@ -26,6 +26,11 @@ inputs:
   config-file-path:
     description: Path to the config file for the license checker.
     required: true
+outputs:
+  notice-file-path:
+    description: Path to the generated notice file
+  notice-file-is-dirty:
+    description: True if the generated notice file "is dirty" (needs to be updated in the git repo)
 
 runs:
   using: 'docker'
