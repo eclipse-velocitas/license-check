@@ -33,7 +33,7 @@ jobs:
         with:
           repository: eclipse-velocitas/license-check
           path: .github/actions/license-check
-          ref: main
+          ref: v1.2.0
 
       - name: Run License Checker
         id: checker
