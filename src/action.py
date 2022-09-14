@@ -70,8 +70,7 @@ def output_update_hint(repo_root_path: str, notice_file_name: str) -> None:
         repo_root_path (str): The path to the root of the repository.
         notice_file_name (str): Name of the notice file to check.
     """
-    print(f"::warning::{notice_file_name} needs to be updated!")
-    print(f"You may copy the updated contents from here:")
+    print(f"::warning::{notice_file_name} needs to be updated! You may copy the updated contents from here:")
     print(f"=========================================================================================================================")
     print(f"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv")
     with open(f"{repo_root_path}/{notice_file_name}", "r") as f:
@@ -127,12 +126,11 @@ def main():
         generate_notice_file(
             origin_to_licenses, f"{github_workspace}/{notice_file_path}"
         )
-        if is_dirty(github_workspace, notice_file_path):
-            output_update_hint(github_workspace, notice_file_path)
-            print("::set-output name=notice-file-is-dirty::true")
-        else:
-            print("::set-output name=notice-file-is-dirty::false")
+        notice_file_is_dirty = is_dirty(github_workspace, notice_file_path)
         print(f"::set-output name=notice-file-path::{notice_file_path}")
+        print(f"::set-output name=notice-file-is-dirty::{notice_file_is_dirty}")
+        if notice_file_is_dirty:
+            output_update_hint(github_workspace, notice_file_path)
 
     if not licenses_are_valid and args.fail_on_violation:
         print("::error::License check failed. At least one invalid license found!")
