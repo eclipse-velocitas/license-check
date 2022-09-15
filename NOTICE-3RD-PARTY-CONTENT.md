@@ -17,4 +17,3 @@
 |:-----------|:-------:|--------:|
 |actions/checkout|v3|MIT License|
 |github/codeql-action|v1|MIT License|
-
