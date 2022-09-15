@@ -75,7 +75,7 @@ def output_update_hint(repo_root_path: str, notice_file_name: str) -> None:
     print(f"Copy from below here ...")
     print(f"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv")
     with open(f"{repo_root_path}/{notice_file_name}", "r") as f:
-        print(f.read())
+        print(f.read(), end='', flush=True)
     print(f"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
     print(f"... until above here.")
     print(f"=========================================================================================================================")
