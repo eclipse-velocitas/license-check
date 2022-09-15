@@ -70,12 +70,14 @@ def output_update_hint(repo_root_path: str, notice_file_name: str) -> None:
         repo_root_path (str): The path to the root of the repository.
         notice_file_name (str): Name of the notice file to check.
     """
-    print(f"::warning::{notice_file_name} needs to be updated! You may copy the updated contents from here:")
+    print(f"::error::{notice_file_name} needs to be manually updated (checked-in)! You may copy the updated contents from here:")
     print(f"=========================================================================================================================")
+    print(f"Copy from below here ...
     print(f"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv")
     with open(f"{repo_root_path}/{notice_file_name}", "r") as f:
         print(f.read())
     print(f"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    print(f"... until above here.
     print(f"=========================================================================================================================")
 
 
@@ -120,6 +122,12 @@ def main():
         print(f"::error::{err}")
         sys.exit(-1)
 
+    workflow_failure = False
+
+    if not licenses_are_valid and args.fail_on_violation:
+        print("::error::License check failed. At least one invalid license found!")
+        workflow_failure = True
+
     if args.generate_notice_file:
         print_step("Generating notice file")
         notice_file_path = f"{args.notice_file_name}.md"
@@ -127,13 +135,11 @@ def main():
             origin_to_licenses, f"{github_workspace}/{notice_file_path}"
         )
         notice_file_is_dirty = is_dirty(github_workspace, notice_file_path)
-        print(f"::set-output name=notice-file-path::{notice_file_path}")
-        print(f"::set-output name=notice-file-is-dirty::{notice_file_is_dirty}")
         if notice_file_is_dirty:
             output_update_hint(github_workspace, notice_file_path)
+            workflow_failure = True
 
-    if not licenses_are_valid and args.fail_on_violation:
-        print("::error::License check failed. At least one invalid license found!")
+    if workflow_failure:
         sys.exit(1)
 
 

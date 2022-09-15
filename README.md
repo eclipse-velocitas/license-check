@@ -28,17 +28,6 @@ Shall the action fail if a license violation is detected? Default `false`
 
 **Required** Path to the config file for the license checker.
 
-## Outputs
-
-### `notice-file-path` 
-
-Path to the generated notice file.
-This might differ from the input parameter `notice-file-name` as this action will add a file name extension automatically.
-
-### `notice-file-is-dirty`
-
-True if the generated notice file "is dirty" (needs to be updated in the git repo)
-
 ## Config file syntax
 
 ### `whitelist-file-path` (string)
