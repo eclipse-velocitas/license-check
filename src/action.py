@@ -70,7 +70,7 @@ def output_update_hint(repo_root_path: str, notice_file_name: str) -> None:
         repo_root_path (str): The path to the root of the repository.
         notice_file_name (str): Name of the notice file to check.
     """
-    print(f"::error::{notice_file_name} needs to be manually updated (checked-in)! You may copy the updated contents from here:")
+    print(f"::error::{notice_file_name} needs to be manually updated (checked-in)! You can copy the updated contents from the workflow output.")
     print(f"=========================================================================================================================")
     print(f"Copy from below here ...
     print(f"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv")
