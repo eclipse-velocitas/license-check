@@ -96,7 +96,7 @@ def _read_used_actions_from_yaml(text_io: TextIO) -> set[DependencyInfo]:
                         DependencyInfo(action_info.repository, action_info.version, [])
                     )
     else:
-        print(f"Ignoring malformed workflow '{text_io.name}' - missing 'jobs' section")
+        print(f"::warning::Ignoring malformed workflow '{text_io.name}' - missing 'jobs' section")
 
     return used_actions
 
