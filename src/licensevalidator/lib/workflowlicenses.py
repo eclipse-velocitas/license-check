@@ -96,7 +96,7 @@ def _read_used_actions_from_yaml(text_io: TextIO) -> set[DependencyInfo]:
                         DependencyInfo(action_info.repository, action_info.version, [])
                     )
     else:
-        print(f"Ignoring malformed workflow '{text_io.name}' - missing 'jobs' section")
+        print(f"::warning::Ignoring malformed workflow '{text_io.name}' - missing 'jobs' section")
 
     return used_actions
 
@@ -163,10 +163,11 @@ def __get_license_for_action(action_repo: str) -> Optional[str]:
     )
     try:
         return result.json()["license"]["name"]
-    except ValueError as err:
-        print(err)
-        print(action_repo)
-        print(result.json())
+    except (KeyError, ValueError) as err:
+        print("Error getting workflow license info from github.com:")
+        print(f"\t{err}")
+        print(f"\t{action_repo}")
+        print(f"\t{result.json()}")
 
     return None
 
