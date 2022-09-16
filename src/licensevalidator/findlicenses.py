@@ -176,7 +176,7 @@ def find_licenses(
             try:
                 deps = sorted(
                     language_check[1](scan_directory_config),
-                    key=lambda x: x.name.lower(),
+                    key=lambda x: f"{x.name.lower()}{x.version.lower()}",
                 )
                 if len(deps) > 0:
                     origin_to_deps[language_check[0]] = deps
@@ -185,7 +185,10 @@ def find_licenses(
 
     for project_check in project_checks:
         print_step(f"Getting dependencies for {project_check[0]}")
-        deps = sorted(project_check[1](), key=lambda x: x.name.lower())
+        deps = sorted(
+            project_check[1](),
+            key=lambda x: f"{x.name.lower()}{x.version.lower()}",
+        )
         if len(deps) > 0:
             origin_to_deps[project_check[0]] = deps
 
