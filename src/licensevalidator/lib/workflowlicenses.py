@@ -165,9 +165,9 @@ def __get_license_for_action(action_repo: str) -> Optional[str]:
         return result.json()["license"]["name"]
     except (KeyError, ValueError) as err:
         print("Error getting workflow license info from github.com:")
-        print(f"   {err}")
-        print(f"   {action_repo}")
-        print(f"   {result.json()}")
+        print(f"\t{err}")
+        print(f"\t{action_repo}")
+        print(f"\t{result.json()}")
 
     return None
 
