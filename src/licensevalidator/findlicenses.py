@@ -112,6 +112,20 @@ def __use_conan_profile_if_present(conan_profile_file: str):
             )
 
 
+def sort_dependencies(deps: list[DependencyInfo]) -> list[DependencyInfo]:
+    """Sort the passed DependencyInfo list by name 1st and version 2nd
+
+    Args: deps (list[DependencyInfo]):
+        The list of dependencies to be sorted
+
+    Returns:
+        A new list with sorted contents
+    """
+    deps = sorted(deps, key=lambda x: x.version.lower())
+    deps = sorted(deps, key=lambda x: x.name.lower())
+    return deps
+
+
 def find_licenses(
     project_root: str, scan_directories_config: list[Any]
 ) -> dict[str, list[DependencyInfo]]:
@@ -174,10 +188,7 @@ def find_licenses(
             print(f"Try finding {language_check[0]} package managers:")
 
             try:
-                deps = sorted(
-                    language_check[1](scan_directory_config),
-                    key=lambda x: f"{x.name.lower()}{x.version.lower()}",
-                )
+                deps = sort_dependencies(language_check[1](scan_directory_config))
                 if len(deps) > 0:
                     origin_to_deps[language_check[0]] = deps
             except Exception as err:
@@ -185,10 +196,7 @@ def find_licenses(
 
     for project_check in project_checks:
         print_step(f"Getting dependencies for {project_check[0]}")
-        deps = sorted(
-            project_check[1](),
-            key=lambda x: f"{x.name.lower()}{x.version.lower()}",
-        )
+        deps = sort_dependencies(project_check[1]())
         if len(deps) > 0:
             origin_to_deps[project_check[0]] = deps
 
