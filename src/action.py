@@ -72,12 +72,12 @@ def output_update_hint(repo_root_path: str, notice_file_name: str) -> None:
     """
     print(f"::error::{notice_file_name} needs to be manually updated (\"checked-in\")! You can copy the updated contents from the workflow output.")
     print(f"=========================================================================================================================")
-    print(f"Copy from below here ...")
+    print(f"Copy from below here (!! Make sure to also copy the newline at the end-of-file !!) ...")
     print(f"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv")
     with open(f"{repo_root_path}/{notice_file_name}", "r") as f:
-        print(f.read(), end='', flush=True)
+        print(f.read())
     print(f"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
-    print(f"... until above here.")
+    print(f"... until above here. (!! Make sure to also copy the newline at the end-of-file !!)")
     print(f"=========================================================================================================================")
 
 
