@@ -3,7 +3,7 @@
 ## Python
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
-|certifi|2022.9.14|Mozilla Public License 2.0|
+|certifi|2022.9.24|Mozilla Public License 2.0|
 |charset-normalizer|2.1.1|MIT|
 |gitdb|4.0.9|BSD|
 |GitPython|3.1.27|BSD|
