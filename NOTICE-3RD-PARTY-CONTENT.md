@@ -6,7 +6,7 @@
 |certifi|2022.9.24|Mozilla Public License 2.0|
 |charset-normalizer|2.1.1|MIT|
 |gitdb|4.0.9|BSD|
-|GitPython|3.1.28|BSD|
+|GitPython|3.1.29|BSD|
 |idna|3.4|BSD|
 |PyYAML|6.0|MIT|
 |requests|2.28.1|Apache 2.0|
