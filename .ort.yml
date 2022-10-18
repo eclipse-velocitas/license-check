@@ -45,3 +45,6 @@ resolutions:
   - id: "CVE-2022-29242"
     reason: CANT_FIX_VULNERABILITY
     comment: "Requires a change to be made by a third party that is not responsive."
+  - id: "CVE-2022-3171"
+    reason: CANT_FIX_VULNERABILITY
+    comment: "Requires a change to be made by a third party that is not responsive."
