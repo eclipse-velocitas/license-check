@@ -48,6 +48,7 @@ resolutions:
   - id: "CVE-2022-3171"
     reason: CANT_FIX_VULNERABILITY
     comment: "Requires a change to be made by a third party that is not responsive."
-  -id: "CVE-2022-24439"
+  - id: "CVE-2022-24439"
     reason: "INEFFECTIVE_VULNERABILITY"
     comment: "bandit has dependency on gitpython but not using affected functinality. No usage of gitpython directly"
+    
