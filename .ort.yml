@@ -16,11 +16,11 @@ curations:
     curations:
       comment: "Add correct license"
       concluded_license: Apache-2.0
-  - id: "PyPI::gitdb:4.0.9"
+  - id: "PyPI::gitdb:4.0.10"
     curations:
       comment: "Add correct license"
       concluded_license: BSD-3-Clause
-  - id: "PyPI::grpcio:1.49.1"
+  - id: "PyPI::grpcio:1.51.1"
     curations:
       comment: "Add correct license"
       concluded_license: Apache-2.0
@@ -48,3 +48,6 @@ resolutions:
   - id: "CVE-2022-3171"
     reason: CANT_FIX_VULNERABILITY
     comment: "Requires a change to be made by a third party that is not responsive."
+  -id: "CVE-2022-24439"
+    reason: "INEFFECTIVE_VULNERABILITY"
+    comment: "bandit has dependency on gitpython but not using affected functinality. No usage of gitpython directly"
