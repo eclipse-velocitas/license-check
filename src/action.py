@@ -19,7 +19,7 @@ from distutils.util import strtobool
 from typing import Any
 
 import yaml
-from git import Actor, Repo
+from git import Repo
 
 from licensevalidator.lib.dependency import DependencyInfo
 from licensevalidator.lib.utils import print_step
@@ -60,6 +60,9 @@ def is_dirty(repo_root_path: str, file_path: str) -> bool:
         file_path (str): The path to the file to check.
     """
     repo = Repo(repo_root_path)
+    repo.config_writer("global").set_value(
+        "safe", "directory", repo_root_path
+    ).release()
     return repo.is_dirty(path=f"{repo_root_path}/{file_path}")
 
 
@@ -70,15 +73,29 @@ def output_update_hint(repo_root_path: str, notice_file_name: str) -> None:
         repo_root_path (str): The path to the root of the repository.
         notice_file_name (str): Name of the notice file to check.
     """
-    print(f"::error::{notice_file_name} needs to be manually updated (\"checked-in\")! You can copy the updated contents from the workflow output.")
-    print(f"=========================================================================================================================")
-    print(f"Copy from below here (!! Make sure to also copy the newline at the end-of-file !!) ...")
-    print(f"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv")
+    print(
+        f'::error::{notice_file_name} needs to be manually updated ("checked-in")! You can copy the updated contents from the workflow output.'
+    )
+    print(
+        f"========================================================================================================================="
+    )
+    print(
+        f"Copy from below here (!! Make sure to also copy the newline at the end-of-file !!) ..."
+    )
+    print(
+        f"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv"
+    )
     with open(f"{repo_root_path}/{notice_file_name}", "r") as f:
         print(f.read())
-    print(f"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
-    print(f"... until above here. (!! Make sure to also copy the newline at the end-of-file !!)")
-    print(f"=========================================================================================================================")
+    print(
+        f"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+    )
+    print(
+        f"... until above here. (!! Make sure to also copy the newline at the end-of-file !!)"
+    )
+    print(
+        f"========================================================================================================================="
+    )
 
 
 def read_config_file(config_file_path: str) -> Any:
