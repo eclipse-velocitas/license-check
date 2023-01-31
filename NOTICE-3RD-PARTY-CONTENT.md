@@ -3,15 +3,15 @@
 ## Python
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
-|certifi|2022.9.24|Mozilla Public License 2.0|
-|charset-normalizer|2.1.1|MIT|
-|gitdb|4.0.9|BSD|
-|GitPython|3.1.29|BSD|
+|certifi|2022.12.7|Mozilla Public License 2.0|
+|charset-normalizer|3.0.1|MIT|
+|gitdb|4.0.10|BSD|
+|GitPython|3.1.30|BSD|
 |idna|3.4|BSD|
 |PyYAML|6.0|MIT|
-|requests|2.28.1|Apache 2.0|
+|requests|2.28.2|Apache 2.0|
 |smmap|5.0.0|BSD|
-|urllib3|1.26.12|MIT|
+|urllib3|1.26.14|MIT|
 ## Workflows
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
