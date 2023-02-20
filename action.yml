@@ -35,3 +35,5 @@ runs:
     - ${{ inputs.notice-file-name }}
     - ${{ inputs.fail-on-violation }}
     - ${{ inputs.config-file-path }}
+  env:
+    GITHUB_TOKEN: ${{ github.token }}

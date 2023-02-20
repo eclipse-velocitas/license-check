@@ -157,9 +157,16 @@ def __get_license_for_action(action_repo: str) -> Optional[str]:
     Returns:
         str: The name of the license, if available.
     """
+    request_headers={"Accept": "application/vnd.github.v3+json"}
+
+    github_token = os.getenv("GITHUB_TOKEN")
+    print(f"######################################## GITHUB_TOKEN={github_token}")
+    if github_token is not None:
+        request_headers["authorization"] = github_token
+
     result = requests.get(
         f"https://api.github.com/repos/{action_repo}",
-        headers={"Accept": "application/vnd.github.v3+json"},
+        headers=request_headers,
     )
     try:
         return result.json()["license"]["name"]
