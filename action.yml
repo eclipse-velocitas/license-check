@@ -26,6 +26,8 @@ inputs:
   config-file-path:
     description: Path to the config file for the license checker.
     required: true
+  github-token:
+    description: GitHub token to overcome API rate limiting  
 
 runs:
   using: 'docker'
@@ -36,4 +38,4 @@ runs:
     - ${{ inputs.fail-on-violation }}
     - ${{ inputs.config-file-path }}
   env:
-    GITHUB_TOKEN: ${{ github.token }}
+    GITHUB_TOKEN: ${{ inputs.github-token }}
