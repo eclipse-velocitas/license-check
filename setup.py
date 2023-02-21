@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="licensevalidator",
-    version="1.2.1",
+    version="1.2.2",
     description="A validator for dependency licenses",
     long_description=long_description,
     long_description_content_type="text/markdown",

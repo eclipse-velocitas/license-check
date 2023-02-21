@@ -48,6 +48,11 @@ def get_args():
         type=str,
         help="Path to the license check configuration." "(Relative to repository root)",
     )
+    parser.add_argument(
+        "--github-token",
+        type=str,
+        help="Pass GitHub token to overcome possible rate limiting issues",
+    )
 
     return parser.parse_args()
 
@@ -134,6 +139,7 @@ def main():
             github_workspace,
             config["scan-dirs"],
             config["whitelist-file-path"],
+            github_token = args.github_token
         )
     except FileNotFoundError as err:
         print(f"::error::{err}")

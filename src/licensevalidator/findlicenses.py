@@ -127,7 +127,9 @@ def sort_dependencies(deps: list[DependencyInfo]) -> list[DependencyInfo]:
 
 
 def find_licenses(
-    project_root: str, scan_directories_config: list[Any]
+    project_root: str,
+    scan_directories_config: list[Any],
+    github_token: str,
 ) -> dict[str, list[DependencyInfo]]:
     """Find all licenses used in the software project.
 
@@ -136,6 +138,8 @@ def find_licenses(
             The path to the project's root.
         scan_directories_config (list[Any]):
             A list of directories to scan and their respective configurations.
+        github-token (str):
+            GitHub token to do authorized API requests (overcoming rate limiting)
 
     Returns:
         dict[str,list[DependencyInfo]]: Dict containing mappings from
@@ -179,7 +183,7 @@ def find_licenses(
     ]
 
     project_checks = [
-        ("Workflows", lambda: get_workflow_dependencies(project_root)),
+        ("Workflows", lambda: get_workflow_dependencies(project_root, github_token)),
     ]
 
     for scan_directory_config in scan_directories_config:

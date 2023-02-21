@@ -41,3 +41,4 @@ jobs:
           config-file-path: ./.licensechecker.yml
           fail-on-violation: false
           notice-file-name: "NOTICE-3RD-PARTY-CONTENT"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
