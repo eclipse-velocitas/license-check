@@ -23,7 +23,10 @@ from licensevalidator.lib.utils import print_step
 
 
 def validate_used_licenses(
-    project_root: str, scan_directories_config: list[Any], whitelist_file_path: str
+    project_root: str,
+    scan_directories_config: list[Any],
+    whitelist_file_path: str,
+    github_token: str,
 ) -> tuple[bool, dict[str, list[DependencyInfo]]]:
     """Run the license validation.
 
@@ -35,6 +38,8 @@ def validate_used_licenses(
         whitelist_file_path (str):
             The path to the whitelist file
             (relative to project root).
+        github-token (str):
+            GitHub token to do authorized API requests (overcoming rate limiting)
 
     Raises:
         FileNotFoundError: In case the whitelist file is not present.
@@ -54,7 +59,7 @@ def validate_used_licenses(
         )
 
     print_step("Finding licenses")
-    origin_vs_deps = find_licenses(project_root, scan_directories_config)
+    origin_vs_deps = find_licenses(project_root, scan_directories_config, github_token)
 
     print_step("Checking licenses")
     whitelisted_licenses = read_license_list(abs_path_to_whitelist)

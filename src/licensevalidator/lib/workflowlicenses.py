@@ -148,18 +148,18 @@ def _get_used_actions(project_root: str) -> set[DependencyInfo]:
     return used_actions
 
 
-def __get_license_for_action(action_repo: str) -> Optional[str]:
+def __get_license_for_action(action_repo: str, github_token: str) -> Optional[str]:
     """Get the license for a single github action.
 
     Args:
         action_repo (str): The action repository name
+        github-token (str):
+            GitHub token to do authorized API requests (overcoming rate limiting)
 
     Returns:
         str: The name of the license, if available.
     """
     request_headers={"Accept": "application/vnd.github.v3+json"}
-
-    github_token = os.getenv("GITHUB_TOKEN")
     if github_token is not None:
         request_headers["authorization"] = github_token
 
@@ -178,18 +178,20 @@ def __get_license_for_action(action_repo: str) -> Optional[str]:
     return None
 
 
-def get_workflow_dependencies(project_root: str) -> list[DependencyInfo]:
+def get_workflow_dependencies(project_root: str, github_token: str) -> list[DependencyInfo]:
     """Get all dependencies used by all workflows.
 
     Args:
         project_root (str): The project root in which to search for workflows.
+        github-token (str):
+            GitHub token to do authorized API requests (overcoming rate limiting)
 
     Returns:
         list[DependencyInfo]: A list of all unique dependencies.
     """
     result: list[DependencyInfo] = []
     for dep_infos in _get_used_actions(project_root):
-        license_name = __get_license_for_action(dep_infos.name)
+        license_name = __get_license_for_action(dep_infos.name, github_token)
         if license_name is not None:
             dep_infos.licenses = [license_name]
         result.append(dep_infos)
