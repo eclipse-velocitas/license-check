@@ -26,4 +26,3 @@ def generate_dependency(
                 if origin == "Python":
                     file.write(f"pypi/pypi/-/{dep_info.name}/{dep_info.version}\n")
     return
-    

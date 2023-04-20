@@ -78,21 +78,6 @@ if [ "${USE_PROXIES}" = "true" ]; then
     echo "export NO_PROXY=\"${NO_PROXY}\"" >> /home/${USERNAME}/.profile
     echo "export no_proxy=\"${NO_PROXY}\"" >> /home/${USERNAME}/.profile
 
-#     if [ "${CONFIGURE_DOCKER_IN_DOCKER_PROXY}" = "true" ]; then
-#         echo "# Configure docker-in-docker with proxy"
-#         touch /home/${USERNAME}/.docker/config.json
-#         echo \
-# "{
-#     \"proxies\":{
-#         \"default\":{
-#             \"httpProxy\":\"${HTTP_PROXY}\",
-#             \"httpsProxy\":\"${HTTPS_PROXY}\",
-#             \"noProxy\":\"${NO_PROXY}\"
-#         }
-#     }
-# }" > /home/${USERNAME}/.docker/config.json
-#     fi
-
     echo "# Proxy settings" >> /etc/wgetrc
     echo "http_proxy=${HTTP_PROXY}" >> /etc/wgetrc
     echo "https_proxy=${HTTPS_PROXY}" >> /etc/wgetrc
