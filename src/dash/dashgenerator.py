@@ -27,4 +27,8 @@ def generate_dependency(
                     file.write(f"pypi/pypi/-/{dep_info.name}/{dep_info.version}\n")
                 if origin == "Workflows":
                     file.write(f"git/github/{dep_info.name}/{dep_info.version}\n")
+                if origin == "Rust":
+                    file.write(f"crate/cratesio/-/{dep_info.name}/{dep_info.version}\n")
+                else:
+                    print(f"Unkwown origin: {origin}")
     return
