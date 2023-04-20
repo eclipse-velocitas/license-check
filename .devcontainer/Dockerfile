@@ -22,7 +22,7 @@ RUN if [ "${NODE_VERSION}" != "none" ]; then su vscode -c "umask 0002 && . /usr/
 
 # [Optional] If your pip requirements rarely change, uncomment this section to add them to the image.
 COPY ./src/requirements.txt /tmp/pip-tmp/
-RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.txt \
+RUN pip3 install --upgrade pip && pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.txt \
     && rm -rf /tmp/pip-tmp
 
 # [Optional] Uncomment this section to install additional OS packages.
@@ -35,3 +35,8 @@ RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requ
 RUN apt-get update && apt-get install -y ruby && gem install license_finder && gembin=`(gem env | sed -n "s/.*EXECUTABLE DIRECTORY: \(.*\)/\1/p")` && export PATH=$gembin:$PATH
 
 RUN curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh -s -- -y
+
+# Enable proxy, if set in local environment
+COPY ./.devcontainer/scripts/*.sh /tmp/script/
+RUN find /tmp/script/ -type f -iname "*.sh" -exec chmod +x {} \;
+RUN /bin/bash /tmp/script/configure-proxies.sh

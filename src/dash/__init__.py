@@ -1,5 +1,5 @@
 # /********************************************************************************
-# * Copyright (c) 2022 Contributors to the Eclipse Foundation
+# * Copyright (c) 2023 Contributors to the Eclipse Foundation
 # *
 # * See the NOTICE file(s) distributed with this work for additional
 # * information regarding copyright ownership.
@@ -11,15 +11,4 @@
 # * SPDX-License-Identifier: Apache-2.0
 # ********************************************************************************/
 
-.DS_Store
-NOTICE-GENERATED.md
-clearlydefined.input
-**/dependency_decisions.yml
-
-# Python related
-__pycache__
-.pytest_cache
-.mypy_cache
-
-# NodeJS related
-node_modules
+"""Package."""

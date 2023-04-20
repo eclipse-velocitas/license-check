@@ -15,5 +15,9 @@
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-docker build . -t license-checker:latest && docker run --workdir /github/workspace -v "${SCRIPT_DIR}/testbench/multilang":"/github/workspace" --rm license-checker:latest \
-    "true" "NOTICE-GENERATED" false ".lc.config.yml"
+docker build . \
+    -t license-checker:latest && \
+    docker run --workdir /github/workspace \
+    -v "${SCRIPT_DIR}/testbench/multilang":"/github/workspace" \
+    --rm license-checker:latest \
+    "true" "NOTICE-GENERATED" false ".lc.config.yml" true

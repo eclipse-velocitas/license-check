@@ -28,6 +28,10 @@ Shall the action fail if a license violation is detected? Default `false`
 
 **Required** Path to the config file for the license checker.
 
+### `generate-dash`
+
+Generate clearlydefined.input based on [ClearDefined Scheme](https://docs.clearlydefined.io/using-data)
+
 ## Config file syntax
 
 ### `whitelist-file-path` (string)

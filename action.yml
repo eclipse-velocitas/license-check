@@ -29,6 +29,10 @@ inputs:
   github-token:
     description: GitHub token to overcome API rate limiting  
     default: ${{ github.token }}
+  generate-dash:
+    description: Generate clearlydefined.input based on ClearDefined Scheme
+    required: false
+    defualt: false
 
 runs:
   using: 'docker'
@@ -40,3 +44,4 @@ runs:
     - ${{ inputs.config-file-path }}
     - '--github-token'
     - ${{ inputs.github-token }}
+    - ${{ inputs.generate-dash }}

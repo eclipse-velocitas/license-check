@@ -25,6 +25,7 @@ from licensevalidator.lib.dependency import DependencyInfo
 from licensevalidator.lib.utils import print_step
 from licensevalidator.licensevalidator import validate_used_licenses
 from licensevalidator.noticegenerator import generate_notice_file
+from dash.dashgenerator import generate_dependency
 
 
 def get_args():
@@ -52,6 +53,12 @@ def get_args():
         "--github-token",
         type=str,
         help="Pass GitHub token to overcome possible rate limiting issues",
+    )
+
+    parser.add_argument(
+        "generate_dash",
+        type=lambda x: bool(strtobool(x)),
+        help="Generate DEPENDENCY based on ClearDefined IDs",
     )
 
     return parser.parse_args()
@@ -157,10 +164,14 @@ def main():
         generate_notice_file(
             origin_to_licenses, f"{github_workspace}/{notice_file_path}"
         )
-        notice_file_is_dirty = is_dirty(github_workspace, notice_file_path)
-        if notice_file_is_dirty:
-            output_update_hint(github_workspace, notice_file_path)
-            workflow_failure = True
+        # notice_file_is_dirty = is_dirty(github_workspace, notice_file_path)
+        # if notice_file_is_dirty:
+        #     output_update_hint(github_workspace, notice_file_path)
+        #     workflow_failure = True
+
+    if args.generate_dash:
+        print("Generate dash input")
+        generate_dependency(f"{github_workspace}/clearlydefined.input",origin_to_licenses)
 
     if workflow_failure:
         sys.exit(1)

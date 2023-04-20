@@ -10,7 +10,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/eclipse-velocitas/license-check",
-    packages=["licensevalidator", "licensevalidator.lib"],
+    packages=["licensevalidator", "licensevalidator.lib", "dash"],
     package_data={"licensevalidator": ["py.typed"]},
     include_package_data=True,
     install_requires=[],
