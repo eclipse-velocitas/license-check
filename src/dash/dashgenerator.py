@@ -25,4 +25,6 @@ def generate_dependency(
             for dep_info in dep_infos:
                 if origin == "Python":
                     file.write(f"pypi/pypi/-/{dep_info.name}/{dep_info.version}\n")
+                if origin == "Workflows":
+                    file.write(f"git/github/{dep_info.name}/{dep_info.version}\n")
     return
