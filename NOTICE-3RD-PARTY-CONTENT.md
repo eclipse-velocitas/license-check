@@ -4,14 +4,14 @@
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
 |certifi|2022.12.7|Mozilla Public License 2.0|
-|charset-normalizer|3.0.1|MIT|
+|charset-normalizer|3.1.0|MIT|
 |gitdb|4.0.10|BSD|
 |GitPython|3.1.31|BSD|
 |idna|3.4|BSD|
 |PyYAML|6.0|MIT|
 |requests|2.28.2|Apache 2.0|
 |smmap|5.0.0|BSD|
-|urllib3|1.26.14|MIT|
+|urllib3|1.26.15|MIT|
 ## Workflows
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
