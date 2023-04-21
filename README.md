@@ -30,7 +30,7 @@ Shall the action fail if a license violation is detected? Default `false`
 
 ### `generate-dash`
 
-Generate clearlydefined.input based on [ClearDefined Scheme](https://docs.clearlydefined.io/using-data)
+Generate clearlydefined.input based on [ClearDefined Schema](https://docs.clearlydefined.io/using-data)
 
 ## Config file syntax
 
