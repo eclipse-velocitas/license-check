@@ -12,6 +12,7 @@
 |requests|2.28.2|Apache 2.0|
 |smmap|5.0.0|BSD|
 |urllib3|1.26.14|MIT|
+|str2bool|1.1|BSD|
 ## Workflows
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|

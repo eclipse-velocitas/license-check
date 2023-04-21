@@ -15,20 +15,36 @@
 
 from licensevalidator.lib.dependency import DependencyInfo
 
-def generate_dependency(
+def generate_clearlydefined_input_file(
     path_to_output_file: str, origin_to_dependencies: dict[str, list[DependencyInfo]]
 ) -> None:
     """Generate a notice file from the given dependencies in 
         type/provider/namespace/name/revision format"""
-    with open(path_to_clearlydefined_input, "w", encoding="utf-8") as file:
+    with open(path_to_output_file, "w", encoding="utf-8") as file:
         for origin, dep_infos in origin_to_dependencies.items():
             for dep_info in dep_infos:
-                if origin == "Python":
-                    file.write(f"pypi/pypi/-/{dep_info.name}/{dep_info.version}\n")
-                if origin == "Workflows":
-                    file.write(f"git/github/{dep_info.name}/{dep_info.version}\n")
-                if origin == "Rust":
-                    file.write(f"crate/cratesio/-/{dep_info.name}/{dep_info.version}\n")
-                else:
-                    print(f"Unkwown origin: {origin}")
-    return
+                try:
+                    file.write(f"{get_type_provider_namespace_prefix(origin)}{dep_info.name}/{dep_info.version}\n")
+                except KeyError as err:
+                    print (f"Uknown origin {origin}")
+                    print (f"Error: {err}")
+                    continue
+
+
+
+def get_type_provider_namespace_prefix(origin: str) -> str:
+    """Map origin to prefix
+
+    Args:
+        origin (str): Name of origin
+
+    Returns:
+        str: Prefix for ClearlyDefined ID SBOM
+    """
+    mapping = {
+        "Python": "pypi/pypi/-/",
+        "Workflows": "git/github/",
+        "Rust": "crate/cratesio/-/",
+        "Conan": "conan/center/-/"
+        }
+    return mapping[origin]
