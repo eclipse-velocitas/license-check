@@ -170,7 +170,7 @@ def main():
         #     workflow_failure = True
 
     if args.generate_dash:
-        print("Generate dash input")
+        print("Generating Eclipse Dash compliant input file")
         generate_dependency(f"{github_workspace}/clearlydefined.input",origin_to_licenses)
 
     if workflow_failure:
