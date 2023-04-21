@@ -58,7 +58,7 @@ def get_args():
     parser.add_argument(
         "generate_dash",
         type=lambda x: bool(strtobool(x)),
-        help="Generate DEPENDENCY based on ClearDefined IDs",
+        help="Generate Eclipse Dash compliant input file",
     )
 
     return parser.parse_args()
