@@ -16,7 +16,7 @@
 from licensevalidator.lib.dependency import DependencyInfo
 
 def generate_dependency(
-    path_to_clearlydefined_input: str, origin_to_dependencies: dict[str, list[DependencyInfo]]
+    path_to_output_file: str, origin_to_dependencies: dict[str, list[DependencyInfo]]
 ) -> None:
     """Generate a notice file from the given dependencies in 
         type/provider/namespace/name/revision format"""
