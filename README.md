@@ -30,7 +30,7 @@ Shall the action fail if a license violation is detected? Default `false`
 
 ### `generate-dash`
 
-Generate clearlydefined.input based on [ClearDefined Schema](https://docs.clearlydefined.io/using-data)
+This option enables the capability to generate the input file for [Eclipse Dash License Tool](https://github.com/eclipse/dash-licenses) based on `NOTICE-3RD-PARTY-CONTENT` file in ClearlyDefined format based on [ClearDefined Schema](https://docs.clearlydefined.io/using-data).
 
 ## Config file syntax
 
