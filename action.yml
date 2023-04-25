@@ -32,7 +32,7 @@ inputs:
   generate-dash:
     description: Generate clearlydefined.input based on ClearDefined Scheme
     required: false
-    defualt: false
+    default: false
 
 runs:
   using: 'docker'
