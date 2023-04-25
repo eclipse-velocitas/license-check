@@ -25,7 +25,7 @@ from licensevalidator.lib.dependency import DependencyInfo
 from licensevalidator.lib.utils import print_step
 from licensevalidator.licensevalidator import validate_used_licenses
 from licensevalidator.noticegenerator import generate_notice_file
-from dash.dashgenerator import generate_clearlydefined_input_file
+from dash.dashgenerator import generate_dash_input
 
 
 def get_args():
@@ -172,7 +172,7 @@ def main():
 
     if args.generate_dash:
         print("Generating Eclipse Dash compliant input file")
-        generate_clearlydefined_input_file(f"{github_workspace}/clearlydefined.input", origin_to_licenses)
+        generate_dash_input(f"{github_workspace}/clearlydefined.input", origin_to_licenses)
 
     if workflow_failure:
         sys.exit(1)

@@ -15,7 +15,7 @@
 
 from licensevalidator.lib.dependency import DependencyInfo
 
-def generate_clearlydefined_input_file(
+def generate_dash_input(
     path_to_output_file: str, origin_to_dependencies: dict[str, list[DependencyInfo]]
 ) -> None:
     """Generate a notice file from the given dependencies in 
