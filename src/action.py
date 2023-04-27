@@ -1,5 +1,5 @@
 # /********************************************************************************
-# * Copyright (c) 2022 Contributors to the Eclipse Foundation
+# * Copyright (c) 2022-2023 Contributors to the Eclipse Foundation
 # *
 # * See the NOTICE file(s) distributed with this work for additional
 # * information regarding copyright ownership.
@@ -15,8 +15,8 @@
 
 import argparse
 import sys
-from distutils.util import strtobool
 from typing import Any
+from str2bool import str2bool
 
 import yaml
 from git import Repo
@@ -25,6 +25,7 @@ from licensevalidator.lib.dependency import DependencyInfo
 from licensevalidator.lib.utils import print_step
 from licensevalidator.licensevalidator import validate_used_licenses
 from licensevalidator.noticegenerator import generate_notice_file
+from dash.dashgenerator import generate_dash_input
 
 
 def get_args():
@@ -34,13 +35,13 @@ def get_args():
     )
     parser.add_argument(
         "generate_notice_file",
-        type=lambda x: bool(strtobool(x)),
+        type=lambda x: bool(str2bool(x)),
         help="Should a notice file be generated?",
     )
     parser.add_argument("notice_file_name", type=str, help="Name of the notice file")
     parser.add_argument(
         "fail_on_violation",
-        type=lambda x: bool(strtobool(x)),
+        type=lambda x: bool(str2bool(x)),
         help="Shall the action fail upon license violation?",
     )
     parser.add_argument(
@@ -52,6 +53,12 @@ def get_args():
         "--github-token",
         type=str,
         help="Pass GitHub token to overcome possible rate limiting issues",
+    )
+
+    parser.add_argument(
+        "generate_dash",
+        type=lambda x: bool(str2bool(x)),
+        help="Generate Eclipse Dash compliant input file",
     )
 
     return parser.parse_args()
@@ -79,27 +86,28 @@ def output_update_hint(repo_root_path: str, notice_file_name: str) -> None:
         notice_file_name (str): Name of the notice file to check.
     """
     print(
-        f'::error::{notice_file_name} needs to be manually updated ("checked-in")! You can copy the updated contents from the workflow output.'
+        f'::error::{notice_file_name} needs to be manually updated ("checked-in")! '
+        'You can copy the updated contents from the workflow output.'
     )
     print(
-        f"========================================================================================================================="
+        "============================================================================================================="
     )
     print(
-        f"Copy from below here (!! Make sure to also copy the newline at the end-of-file !!) ..."
+        "Copy from below here (!! Make sure to also copy the newline at the end-of-file !!) ..."
     )
     print(
-        f"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv"
+        "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv"
     )
-    with open(f"{repo_root_path}/{notice_file_name}", "r") as f:
-        print(f.read())
+    with open(f"{repo_root_path}/{notice_file_name}", "r", encoding="utf8") as file:
+        print(file.read())
     print(
-        f"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
-    )
-    print(
-        f"... until above here. (!! Make sure to also copy the newline at the end-of-file !!)"
+        "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
     )
     print(
-        f"========================================================================================================================="
+        "... until above here. (!! Make sure to also copy the newline at the end-of-file !!)"
+    )
+    print(
+        "============================================================================================================="
     )
 
 
@@ -161,6 +169,10 @@ def main():
         if notice_file_is_dirty:
             output_update_hint(github_workspace, notice_file_path)
             workflow_failure = True
+
+    if args.generate_dash:
+        print("Generating Eclipse Dash compliant input file")
+        generate_dash_input(f"{github_workspace}/clearlydefined.input", origin_to_licenses)
 
     if workflow_failure:
         sys.exit(1)

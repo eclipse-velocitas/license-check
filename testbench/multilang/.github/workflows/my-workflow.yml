@@ -11,15 +11,20 @@
 # * SPDX-License-Identifier: Apache-2.0
 # ********************************************************************************/
 
-.DS_Store
-NOTICE-GENERATED.md
-clearlydefined.input
-**/dependency_decisions.yml
+name: My workflow
 
-# Python related
-__pycache__
-.pytest_cache
-.mypy_cache
+on:
+  pull_request:
+    branches:
+      - main
 
-# NodeJS related
-node_modules
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    name: Run unit tests and linters
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}

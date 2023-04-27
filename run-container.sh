@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright (c) 2022 Contributors to the Eclipse Foundation
+# Copyright (c) 2022-2023 Contributors to the Eclipse Foundation
 #
 # This program and the accompanying materials are made available under the
 # terms of the Apache License, Version 2.0 which is available at
@@ -15,5 +15,9 @@
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-docker build . -t license-checker:latest && docker run --workdir /github/workspace -v "${SCRIPT_DIR}/testbench/multilang":"/github/workspace" --rm license-checker:latest \
-    "true" "NOTICE-GENERATED" false ".lc.config.yml"
+docker build . \
+    -t license-checker:latest && \
+    docker run --workdir /github/workspace \
+    -v "${SCRIPT_DIR}/testbench/multilang":"/github/workspace" \
+    --rm license-checker:latest \
+    "true" "NOTICE-GENERATED" false ".lc.config.yml" true

@@ -1,3 +1,4 @@
 requests>=2.27.1
 PyYAML>=6.0
 GitPython>=3.1.27
+str2bool>=1.1

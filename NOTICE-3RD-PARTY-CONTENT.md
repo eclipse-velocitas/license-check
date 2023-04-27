@@ -11,6 +11,7 @@
 |PyYAML|6.0|MIT|
 |requests|2.28.2|Apache 2.0|
 |smmap|5.0.0|BSD|
+|str2bool|1.1|BSD|
 |urllib3|1.26.15|MIT|
 ## Workflows
 | Dependency | Version | License |
