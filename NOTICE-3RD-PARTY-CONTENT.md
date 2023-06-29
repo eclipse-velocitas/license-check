@@ -9,10 +9,10 @@
 |GitPython|3.1.31|BSD|
 |idna|3.4|BSD|
 |PyYAML|6.0|MIT|
-|requests|2.30.0|Apache 2.0|
+|requests|2.31.0|Apache 2.0|
 |smmap|5.0.0|BSD|
 |str2bool|1.1|BSD|
-|urllib3|1.26.15|MIT|
+|urllib3|1.26.16|MIT|
 ## Workflows
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
