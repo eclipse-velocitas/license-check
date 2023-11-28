@@ -19,3 +19,4 @@
 |actions/checkout|v3|MIT License|
 |github/codeql-action|v1|MIT License|
 |rickstaa/action-create-tag|v1|MIT License|
+|pre-commit/action|v3.0.0|MIT License|

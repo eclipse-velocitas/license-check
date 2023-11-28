@@ -21,6 +21,18 @@ on:
       - main
 
 jobs:
+  run-linters:
+    runs-on: ubuntu-latest
+    name: Run linters
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run Linters
+        uses: pre-commit/action@v3.0.0
+
+
   check-licenses:
     runs-on: ubuntu-latest
     name: Check Software Licenses
@@ -34,7 +46,7 @@ jobs:
         with:
           repository: eclipse-velocitas/license-check
           path: .github/actions/license-check
-          ref: v1.2.3
+          ref: v1.2
 
       - name: Run License Checker
         uses: ./.github/actions/license-check
