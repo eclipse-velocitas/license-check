@@ -1,31 +1,32 @@
-# /********************************************************************************
-# * Copyright (c) 2022-2023 Contributors to the Eclipse Foundation
-# *
-# * See the NOTICE file(s) distributed with this work for additional
-# * information regarding copyright ownership.
-# *
-# * This program and the accompanying materials are made available under the
-# * terms of the Apache License 2.0 which is available at
-# * http://www.apache.org/licenses/LICENSE-2.0
-# *
-# * SPDX-License-Identifier: Apache-2.0
-# ********************************************************************************/
+# Copyright (c) 2022-2023 Contributors to the Eclipse Foundation
+#
+# This program and the accompanying materials are made available under the
+# terms of the Apache License, Version 2.0 which is available at
+# https://www.apache.org/licenses/LICENSE-2.0.
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations
+# under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
 
 """Github Action which finds and checks all licenses used by a software project."""
 
 import argparse
 import sys
 from typing import Any
-from str2bool import str2bool
 
 import yaml
 from git import Repo
+from str2bool import str2bool
 
+from dash.dashgenerator import generate_dash_input
 from licensevalidator.lib.dependency import DependencyInfo
 from licensevalidator.lib.utils import print_step
 from licensevalidator.licensevalidator import validate_used_licenses
 from licensevalidator.noticegenerator import generate_notice_file
-from dash.dashgenerator import generate_dash_input
 
 
 def get_args():
@@ -87,7 +88,7 @@ def output_update_hint(repo_root_path: str, notice_file_name: str) -> None:
     """
     print(
         f'::error::{notice_file_name} needs to be manually updated ("checked-in")! '
-        'You can copy the updated contents from the workflow output.'
+        "You can copy the updated contents from the workflow output."
     )
     print(
         "============================================================================================================="
@@ -147,7 +148,7 @@ def main():
             github_workspace,
             config["scan-dirs"],
             config["whitelist-file-path"],
-            github_token = args.github_token
+            github_token=args.github_token,
         )
     except FileNotFoundError as err:
         print(f"::error::{err}")
@@ -172,7 +173,9 @@ def main():
 
     if args.generate_dash:
         print("Generating Eclipse Dash compliant input file")
-        generate_dash_input(f"{github_workspace}/clearlydefined.input", origin_to_licenses)
+        generate_dash_input(
+            f"{github_workspace}/clearlydefined.input", origin_to_licenses
+        )
 
     if workflow_failure:
         sys.exit(1)

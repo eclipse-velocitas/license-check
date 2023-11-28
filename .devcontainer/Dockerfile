@@ -1,15 +1,17 @@
-# /********************************************************************************
-# * Copyright (c) 2022-2023 Contributors to the Eclipse Foundation
-# *
-# * See the NOTICE file(s) distributed with this work for additional
-# * information regarding copyright ownership.
-# *
-# * This program and the accompanying materials are made available under the
-# * terms of the Apache License 2.0 which is available at
-# * http://www.apache.org/licenses/LICENSE-2.0
-# *
-# * SPDX-License-Identifier: Apache-2.0
-# ********************************************************************************/
+# Copyright (c) 2022-2023 Contributors to the Eclipse Foundation
+#
+# This program and the accompanying materials are made available under the
+# terms of the Apache License, Version 2.0 which is available at
+# https://www.apache.org/licenses/LICENSE-2.0.
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations
+# under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
+
 # See here for image contents: https://github.com/microsoft/vscode-dev-containers/tree/v0.224.3/containers/python-3/.devcontainer/base.Dockerfile
 
 # [Choice] Python version (use -bullseye variants on local arm64/Apple Silicon): 3, 3.10, 3.9, 3.8, 3.7, 3.6, 3-bullseye, 3.10-bullseye, 3.9-bullseye, 3.8-bullseye, 3.7-bullseye, 3.6-bullseye, 3-buster, 3.10-buster, 3.9-buster, 3.8-buster, 3.7-buster, 3.6-buster

@@ -1,15 +1,16 @@
-# /********************************************************************************
-# * Copyright (c) 2022 Contributors to the Eclipse Foundation
-# *
-# * See the NOTICE file(s) distributed with this work for additional
-# * information regarding copyright ownership.
-# *
-# * This program and the accompanying materials are made available under the
-# * terms of the Apache License 2.0 which is available at
-# * http://www.apache.org/licenses/LICENSE-2.0
-# *
-# * SPDX-License-Identifier: Apache-2.0
-# ********************************************************************************/
+# Copyright (c) 2022-2023 Contributors to the Eclipse Foundation
+#
+# This program and the accompanying materials are made available under the
+# terms of the Apache License, Version 2.0 which is available at
+# https://www.apache.org/licenses/LICENSE-2.0.
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations
+# under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
 
 """Methods to read licenses from github workflows."""
 
@@ -96,7 +97,9 @@ def _read_used_actions_from_yaml(text_io: TextIO) -> set[DependencyInfo]:
                         DependencyInfo(action_info.repository, action_info.version, [])
                     )
     else:
-        print(f"::warning::Ignoring malformed workflow '{text_io.name}' - missing 'jobs' section")
+        print(
+            f"::warning::Ignoring malformed workflow '{text_io.name}' - missing 'jobs' section"
+        )
 
     return used_actions
 
@@ -159,7 +162,7 @@ def __get_license_for_action(action_repo: str, github_token: str) -> Optional[st
     Returns:
         str: The name of the license, if available.
     """
-    request_headers={"Accept": "application/vnd.github.v3+json"}
+    request_headers = {"Accept": "application/vnd.github.v3+json"}
     if github_token is not None:
         request_headers["authorization"] = github_token
 
@@ -178,7 +181,9 @@ def __get_license_for_action(action_repo: str, github_token: str) -> Optional[st
     return None
 
 
-def get_workflow_dependencies(project_root: str, github_token: str) -> list[DependencyInfo]:
+def get_workflow_dependencies(
+    project_root: str, github_token: str
+) -> list[DependencyInfo]:
     """Get all dependencies used by all workflows.
 
     Args:
