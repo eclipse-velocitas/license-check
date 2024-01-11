@@ -12,20 +12,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-name: ❓ Question or general issue
-description: Approach us with a question
-title: "[Q]: "
-labels:
-  - question
-body:
-  - type: markdown
-    attributes:
-      value: |
-        **We are happy that you have a question to ask!**
-  - type: textarea
-    validations:
-      required: true
-    attributes:
-      label: Question
-      description: Feel free to ask us if you need assistance
-      placeholder: How can I create a repository based on your template?
+exclude_dirs:
+  - "test"
+skips:
+  - B404 # Ignore warnings about importing subprocess
+  - B603 # Ignore warnings about calling subprocess.Popen without shell=True
+  - B108
+  - B113
