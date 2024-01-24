@@ -14,12 +14,9 @@
 
 """Unit tests for workflowlicenses."""
 
-import sys
 from io import StringIO
 
 import pytest
-
-sys.path.append("./src")
 
 from licensevalidator.lib.workflowlicenses import (
     _extract_action_info,
@@ -122,10 +119,10 @@ def test_find_all_workflow_file_paths():
 
     assert len(file_paths) == 2
     assert (
-        file_paths[0] == "./testbench/python-with-workflows/.github/workflows/"
-        "my-other-workflow.yaml"
+        "./testbench/python-with-workflows/.github/workflows/my-other-workflow.yaml"
+        in file_paths
     )
     assert (
-        file_paths[1] == "./testbench/python-with-workflows/.github/workflows/"
-        "my-workflow.yml"
+        "./testbench/python-with-workflows/.github/workflows/my-workflow.yml"
+        in file_paths
     )

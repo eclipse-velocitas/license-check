@@ -130,7 +130,7 @@ def sort_dependencies(deps: list[DependencyInfo]) -> list[DependencyInfo]:
 def find_licenses(
     project_root: str,
     scan_directories_config: list[Any],
-    github_token: str,
+    github_token: str = None,
 ) -> dict[str, list[DependencyInfo]]:
     """Find all licenses used in the software project.
 

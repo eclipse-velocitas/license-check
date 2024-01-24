@@ -17,6 +17,9 @@ import setuptools
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
+with open("src/requirements.txt", encoding="utf-8") as reqs_file:
+    requirements = reqs_file.read().splitlines()
+
 setuptools.setup(
     name="licensevalidator",
     version="1.2.3",
@@ -27,7 +30,7 @@ setuptools.setup(
     packages=["licensevalidator", "licensevalidator.lib", "dash"],
     package_data={"licensevalidator": ["py.typed"]},
     include_package_data=True,
-    install_requires=[],
+    install_requires=requirements,
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: Apache License 2.0",

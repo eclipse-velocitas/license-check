@@ -20,7 +20,6 @@ echo "#######################################################"
 if [ "$HTTP_PROXY" != "" ]; then
     USE_PROXIES="true"
     CONFIGURE_GIT="true"
-    CONFIGURE_DOCKER_IN_DOCKER_PROXY="true"
     FTP_PROXY=$HTTP_PROXY
     ALL_PROXY=$HTTP_PROXY
     NO_PROXY="localhost,127.0.0.1,0.0.0.0,10.0.0.0/8,192.168.122.0/24,172.0.0.0/8,cattle-system.svc,.svc,.cluster.local"
@@ -76,6 +75,14 @@ if [ "${USE_PROXIES}" = "true" ]; then
     echo "export all_proxy=\"${ALL_PROXY}\"" >> /home/${USERNAME}/.profile
     echo "export NO_PROXY=\"${NO_PROXY}\"" >> /home/${USERNAME}/.profile
     echo "export no_proxy=\"${NO_PROXY}\"" >> /home/${USERNAME}/.profile
+
+    # # Apply common tools proxy settings for installed tools
+    if [ "${CONFIGURE_GIT}" = "true" ]; then
+        su -c "git config --global http.proxy ${HTTP_PROXY}" ${USERNAME}
+        su -c "git config --global https.proxy ${HTTPS_PROXY}" ${USERNAME}
+        git config --global http.proxy ${HTTP_PROXY}
+        git config --global https.proxy ${HTTPS_PROXY}
+    fi
 
     echo "# Proxy settings" >> /etc/wgetrc
     echo "http_proxy=${HTTP_PROXY}" >> /etc/wgetrc
