@@ -151,7 +151,9 @@ def _get_used_actions(project_root: str) -> set[DependencyInfo]:
     return used_actions
 
 
-def __get_license_for_action(action_repo: str, github_token: str) -> Optional[str]:
+def __get_license_for_action(
+    action_repo: str, github_token: str = None
+) -> Optional[str]:
     """Get the license for a single github action.
 
     Args:
@@ -182,7 +184,7 @@ def __get_license_for_action(action_repo: str, github_token: str) -> Optional[st
 
 
 def get_workflow_dependencies(
-    project_root: str, github_token: str
+    project_root: str, github_token: str = None
 ) -> list[DependencyInfo]:
     """Get all dependencies used by all workflows.
 

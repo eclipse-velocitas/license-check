@@ -14,9 +14,6 @@
 
 """Unit tests for checklicenses."""
 
-import sys
-
-sys.path.append("./src")
 
 from licensevalidator.checklicenses import check_licenses
 from licensevalidator.lib.dependency import DependencyInfo

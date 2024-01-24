@@ -14,12 +14,7 @@
 
 """Unit tests for dependency."""
 
-import sys
-
 import pytest
-
-sys.path.append("./src")
-
 from licensevalidator.lib.dependency import DependencyInfo
 
 

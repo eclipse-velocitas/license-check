@@ -7,6 +7,9 @@ clearlydefined.input
 __pycache__
 .pytest_cache
 .mypy_cache
+.ruff_cache
 
 # NodeJS related
 node_modules
+build
+*egg-info*

@@ -27,7 +27,7 @@ def validate_used_licenses(
     project_root: str,
     scan_directories_config: list[Any],
     whitelist_file_path: str,
-    github_token: str,
+    github_token: str = None,
 ) -> tuple[bool, dict[str, list[DependencyInfo]]]:
     """Run the license validation.
 

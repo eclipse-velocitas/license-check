@@ -14,10 +14,6 @@
 
 """Unit tests for licensefinder."""
 
-import sys
-
-sys.path.append("./src")
-
 from licensevalidator.lib.licensefinder import execute_license_finder
 
 
