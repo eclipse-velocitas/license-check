@@ -19,8 +19,8 @@
 ## Workflows
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
-|5monkeys/cobertura-action|master|MIT License|
-|actions/checkout|v3|MIT License|
+|actions/checkout|v4|MIT License|
 |github/codeql-action|v1|MIT License|
-|mikepenz/action-junit-report|v3|Apache License 2.0|
+|irongut/CodeCoverageSummary|v1.3.0|MIT License|
+|mikepenz/action-junit-report|v4|Apache License 2.0|
 |rickstaa/action-create-tag|v1|MIT License|
