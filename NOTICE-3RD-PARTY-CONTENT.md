@@ -21,8 +21,6 @@
 |:-----------|:-------:|--------:|
 |5monkeys/cobertura-action|master|MIT License|
 |actions/checkout|v3|MIT License|
-|actions/setup-python|v4|MIT License|
 |github/codeql-action|v1|MIT License|
 |mikepenz/action-junit-report|v3|Apache License 2.0|
-|pre-commit/action|v3.0.0|MIT License|
 |rickstaa/action-create-tag|v1|MIT License|
