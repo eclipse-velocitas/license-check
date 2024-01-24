@@ -21,22 +21,6 @@ on:
       - main
 
 jobs:
-  run-linters:
-    runs-on: ubuntu-latest
-    name: Run linters
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Setup python
-        uses: actions/setup-python@v4
-      - run: python -m pip install mypy types-PyYAML types-requests
-
-      - name: Run Linters
-        uses: pre-commit/action@v3.0.0
-
-
   check-licenses:
     runs-on: ubuntu-latest
     name: Check Software Licenses
