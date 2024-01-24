@@ -39,6 +39,7 @@ jobs:
       - name: Install required packages
         run: |
           pip install mypy
+          pip install -r src/requirements.txt
 
       - name: Run Linters
         uses: ./.github/actions/pre-commit-action
@@ -54,12 +55,13 @@ jobs:
 
       - name: Install required packages
         run: |
-          pip install -r licensevalidator/requirements.txt
+          pip install -r src/requirements.txt
+          pip install pytest pytest-cov
 
       - name: unit tests
         shell: bash
         run: |
-          pytest --ignore-glob='*integration*' --override-ini junit_family=xunit1 --junit-xml=./results/UnitTest/junit.xml \
+          pytest --override-ini junit_family=xunit1 --junit-xml=./results/UnitTest/junit.xml \
           --cov . \
           --cov-report=xml:results/CodeCoverage/cobertura-coverage.xml \
           --cov-branch ./test
