@@ -15,10 +15,13 @@
 import os
 import shutil
 import subprocess
+import pathlib
 
 from git import Repo
 
 from action import is_dirty, read_config_file
+
+ROOT_DIR = pathlib.Path(__file__).parent.parent.resolve()
 
 
 def test_parse_directory_configs():
@@ -31,10 +34,11 @@ def test_parse_directory_configs():
 
 def test_no_commit_if_not_dirty():
     """Test no commit created if file is not dirty"""
-    notice_file_path = "./testbench/git/my-notice-file.md"
-
+    repo_root = os.path.join(ROOT_DIR, "testbench/git")
+    notice_file_name = "my-notice-file.md"
+    notice_file_path = os.path.join(repo_root, notice_file_name)
     # init repo
-    repo = Repo.init("./testbench/git")
+    repo = Repo.init(repo_root)
     subprocess.run(
         [
             "git",
@@ -42,7 +46,7 @@ def test_no_commit_if_not_dirty():
             "--global",
             "--add",
             "safe.directory",
-            "/workspaces/license-check/testbench/git",
+            repo_root,
         ]
     )
 
@@ -51,20 +55,18 @@ def test_no_commit_if_not_dirty():
         notice_file.write("first license")
 
     # add file initially
-    repo.index.add("my-notice-file.md")
+    repo.index.add(notice_file_name)
     repo.index.commit("Initial")
 
     ref_log = repo.active_branch.log()
 
     try:
-        assert not is_dirty(
-            "/workspaces/license-check/testbench/git", "my-notice-file.md"
-        )
+        assert not is_dirty(repo_root, notice_file_name)
         assert len(ref_log) == 1
         assert ref_log[0].message == "commit (initial): Initial"
     finally:
         os.remove(notice_file_path)
-        shutil.rmtree("./testbench/git/.git")
+        shutil.rmtree(os.path.join(repo_root, ".git"))
         subprocess.run(
             [
                 "git",
@@ -72,17 +74,19 @@ def test_no_commit_if_not_dirty():
                 "--global",
                 "--add",
                 "safe.directory",
-                "/workspaces/license-check",
+                ROOT_DIR,
             ]
         )
 
 
 def test_commit_if_dirty():
     """Test commit is created if file is dirty"""
-    notice_file_path = "/workspaces/license-check/testbench/git/my-notice-file.md"
+    repo_root = os.path.join(ROOT_DIR, "testbench/git")
+    notice_file_name = "my-notice-file.md"
+    notice_file_path = os.path.join(repo_root, notice_file_name)
 
     # init repo
-    repo = Repo.init("./testbench/git")
+    repo = Repo.init(repo_root)
     subprocess.run(
         [
             "git",
@@ -90,7 +94,7 @@ def test_commit_if_dirty():
             "--global",
             "--add",
             "safe.directory",
-            "/workspaces/license-check/testbench/git",
+            repo_root,
         ]
     )
 
@@ -99,7 +103,7 @@ def test_commit_if_dirty():
         notice_file.write("first license")
 
     # add file initially
-    repo.index.add([notice_file_path])
+    repo.index.add([notice_file_name])
     repo.index.commit("Initial")
 
     # modify file
@@ -109,12 +113,12 @@ def test_commit_if_dirty():
     ref_log = repo.active_branch.log()
 
     try:
-        assert is_dirty("/workspaces/license-check/testbench/git", "my-notice-file.md")
+        assert is_dirty(repo_root, notice_file_name)
         assert len(ref_log) == 1
         assert ref_log[0].message == "commit (initial): Initial"
     finally:
         os.remove(notice_file_path)
-        shutil.rmtree("./testbench/git/.git")
+        shutil.rmtree(os.path.join(repo_root, ".git"))
         subprocess.run(
             [
                 "git",
@@ -122,6 +126,6 @@ def test_commit_if_dirty():
                 "--global",
                 "--add",
                 "safe.directory",
-                "/workspaces/license-check",
+                ROOT_DIR,
             ]
         )

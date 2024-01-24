@@ -47,7 +47,7 @@ jobs:
   unit-test:
     name: "Run unit tests"
     runs-on: ubuntu-22.04
-    container: ghcr.io/eclipse-velocitas/devcontainer-base-images/python:v0.2
+    container: mcr.microsoft.com/vscode/devcontainers/python:0-3.10
 
     steps:
       - name: Checkout repository
@@ -57,6 +57,11 @@ jobs:
         run: |
           pip install -r src/requirements.txt
           pip install pytest pytest-cov
+          su vscode -c "umask 0002 && . /usr/local/share/nvm/nvm.sh && nvm install lts/* 2>&1"
+          apt-get update && apt-get install -y ruby
+          gem install license_finder && gembin=`(gem env | sed -n "s/.*EXECUTABLE DIRECTORY: \(.*\)/\1/p")`
+          export PATH=$gembin:$PATH
+          curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh -s -- -y
 
       - name: unit tests
         shell: bash
