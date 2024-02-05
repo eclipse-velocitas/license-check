@@ -38,7 +38,7 @@ curations:
       curations:
         comment: "Add correct license"
         concluded_license: Apache-2.0
-    - id: "PyPI::grpcio:1.52.0"
+    - id: "PyPI::grpcio:1.53.0"
       curations:
         comment: "Add correct license. Although this is a yanked version, ORT somehow uses it."
         concluded_license: Apache-2.0
