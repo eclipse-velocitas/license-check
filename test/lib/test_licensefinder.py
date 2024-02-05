@@ -27,7 +27,7 @@ def test_execution_python():
 
     assert len(result) == 2
     assert result[0].name == "grpcio"
-    assert result[0].version == "1.44.0"
+    assert result[0].version == "1.53.0"
     assert result[0].licenses == ["Apache 2.0"]
     assert result[1].name == "six"
     assert result[1].version == "1.16.0"
