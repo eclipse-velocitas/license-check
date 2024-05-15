@@ -23,7 +23,7 @@ COPY ./src/ /
 RUN apt update \
     && apt install -y git \
     && apt install -y ruby \
-    && gem install license_finder \
+    && gem install license_finder -v 7.1.0 \
     && pip3 install -r /requirements.txt
 
 # Install conan to handle c++ dependencies
