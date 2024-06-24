@@ -13,7 +13,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 
-FROM python:3.10.3-slim
+FROM python:3.12.4-slim
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -23,7 +23,7 @@ COPY ./src/ /
 RUN apt update \
     && apt install -y git \
     && apt install -y ruby \
-    && gem install license_finder -v 7.1.0 \
+    && gem install license_finder \
     && pip3 install -r /requirements.txt
 
 # Install conan to handle c++ dependencies
