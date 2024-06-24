@@ -59,7 +59,7 @@ jobs:
           pip install pytest pytest-cov
           su vscode -c "umask 0002 && . /usr/local/share/nvm/nvm.sh && nvm install lts/* 2>&1"
           apt-get update && apt-get install -y ruby
-          gem install license_finder -v 7.1.0 && gembin=`(gem env | sed -n "s/.*EXECUTABLE DIRECTORY: \(.*\)/\1/p")`
+          gem install license_finder && gembin=`(gem env | sed -n "s/.*EXECUTABLE DIRECTORY: \(.*\)/\1/p")`
           export PATH=$gembin:$PATH
           curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh -s -- -y
 
