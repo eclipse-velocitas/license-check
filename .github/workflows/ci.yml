@@ -56,7 +56,7 @@ jobs:
       - name: Install required packages
         run: |
           pip install -r src/requirements.txt
-          pip install pytest pytest-cov
+          pip install pytest pytest-cov conan==1.63.0
           su vscode -c "umask 0002 && . /usr/local/share/nvm/nvm.sh && nvm install lts/* 2>&1"
           apt-get update && apt-get install -y ruby
           gem install license_finder && gembin=`(gem env | sed -n "s/.*EXECUTABLE DIRECTORY: \(.*\)/\1/p")`
