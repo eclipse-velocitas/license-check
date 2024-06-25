@@ -27,7 +27,7 @@ RUN apt update \
     && pip3 install -r /requirements.txt
 
 # Install conan to handle c++ dependencies
-RUN pip3 install -U conan
+RUN pip3 install -U conan==1.63.0
 
 # Install cargo to handle Rust dependencies
 RUN apt install -y curl && curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh -s -- -y

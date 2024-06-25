@@ -62,6 +62,7 @@ jobs:
           gem install license_finder && gembin=`(gem env | sed -n "s/.*EXECUTABLE DIRECTORY: \(.*\)/\1/p")`
           export PATH=$gembin:$PATH
           curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh -s -- -y
+          . "$HOME/.cargo/env"
 
       - name: unit tests
         shell: bash

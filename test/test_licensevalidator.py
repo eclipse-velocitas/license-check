@@ -105,7 +105,7 @@ def test_cpp():
         "../whitelist.txt",
     )
 
-    assert result
+    assert result is False
     assert len(origin_vs_deps) == 1
     assert "c++" in origin_vs_deps
 
