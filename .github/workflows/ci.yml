@@ -47,7 +47,7 @@ jobs:
   unit-test:
     name: "Run unit tests"
     runs-on: ubuntu-22.04
-    container: mcr.microsoft.com/vscode/devcontainers/python:0-3.10
+    container: mcr.microsoft.com/devcontainers/python:3.12
 
     steps:
       - name: Checkout repository
