@@ -3,19 +3,19 @@
 ## Python
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
-|certifi|2024.2.2|Mozilla Public License 2.0|
+|certifi|2024.6.2|Mozilla Public License 2.0|
 |charset-normalizer|3.3.2|MIT|
 |gitdb|4.0.11|BSD|
 |GitPython|3.1.43|New BSD|
 |idna|3.7|BSD|
 |PyYAML|6.0.1|MIT|
-|requests|2.31.0|Apache 2.0|
+|requests|2.32.3|Apache 2.0|
 |smmap|5.0.1|BSD|
 |str2bool|1.1|BSD|
 |types-PyYAML|6.0.12.20240311|Apache 2.0|
-|types-requests|2.31.0.20240406|Apache 2.0|
-|types-setuptools|69.5.0.20240513|Apache 2.0|
-|urllib3|2.2.1|MIT|
+|types-requests|2.32.0.20240622|Apache 2.0|
+|types-setuptools|70.1.0.20240625|Apache 2.0|
+|urllib3|2.2.2|MIT|
 ## Workflows
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
