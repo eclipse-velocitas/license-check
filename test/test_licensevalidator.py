@@ -36,8 +36,11 @@ def test_python_with_workflows():
 
     assert "Python" in origin_vs_deps
     python_deps = origin_vs_deps["Python"]
-    assert python_deps[0].name == "grpcio"
-    assert python_deps[1].name == "six"
+    assert len(python_deps) == 4
+    assert python_deps[0].name == "idna"
+    assert python_deps[1].name == "multidict"
+    assert python_deps[2].name == "six"
+    assert python_deps[3].name == "yarl"
 
     assert "Workflows" in origin_vs_deps
     workflow_deps = origin_vs_deps["Workflows"]
@@ -61,8 +64,11 @@ def test_python_without_workflows():
     assert len(origin_vs_deps) == 1
     assert "Python" in origin_vs_deps
     python_deps = origin_vs_deps["Python"]
-    assert python_deps[0].name == "grpcio"
-    assert python_deps[1].name == "six"
+    assert len(python_deps) == 4
+    assert python_deps[0].name == "idna"
+    assert python_deps[1].name == "multidict"
+    assert python_deps[2].name == "six"
+    assert python_deps[3].name == "yarl"
 
 
 def test_python_without_req_files():

@@ -3,7 +3,7 @@
 ## Python
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
-|certifi|2024.6.2|Mozilla Public License 2.0|
+|certifi|2024.7.4|Mozilla Public License 2.0|
 |charset-normalizer|3.3.2|MIT|
 |gitdb|4.0.11|BSD|
 |GitPython|3.1.43|New BSD|
@@ -12,9 +12,9 @@
 |requests|2.32.3|Apache 2.0|
 |smmap|5.0.1|BSD|
 |str2bool|1.1|BSD|
-|types-PyYAML|6.0.12.20240311|Apache 2.0|
-|types-requests|2.32.0.20240622|Apache 2.0|
-|types-setuptools|70.1.0.20240625|Apache 2.0|
+|types-PyYAML|6.0.12.20240724|Apache 2.0|
+|types-requests|2.32.0.20240712|Apache 2.0|
+|types-setuptools|71.1.0.20240726|Apache 2.0|
 |urllib3|2.2.2|MIT|
 ## Workflows
 | Dependency | Version | License |
