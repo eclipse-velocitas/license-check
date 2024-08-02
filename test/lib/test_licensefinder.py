@@ -25,10 +25,24 @@ def test_execution_python():
         pip_requirements_path="requirements.txt",
     )
 
-    assert len(result) == 2
-    assert result[0].name == "grpcio"
-    assert result[0].version == "1.53.0"
-    assert result[0].licenses == ["Apache 2.0"]
-    assert result[1].name == "six"
-    assert result[1].version == "1.16.0"
-    assert result[1].licenses == ["MIT"]
+    # Two explicit plus two implicit
+    assert len(result) == 4
+
+    # List in alphabetical order
+    # idna required by yarl
+    assert result[0].name == "idna"
+    assert result[0].version == "3.7"
+    assert result[0].licenses == ["BSD"]
+
+    # multidict required by yarl
+    assert result[1].name == "multidict"
+    assert result[1].version == "6.0.5"
+    assert result[1].licenses == ["Apache 2.0"]
+
+    assert result[2].name == "six"
+    assert result[2].version == "1.16.0"
+    assert result[2].licenses == ["MIT"]
+
+    assert result[3].name == "yarl"
+    assert result[3].version == "1.9.4"
+    assert result[3].licenses == ["Apache 2.0"]
