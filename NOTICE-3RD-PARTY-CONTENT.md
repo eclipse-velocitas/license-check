@@ -3,19 +3,20 @@
 ## Python
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
-|certifi|2024.7.4|Mozilla Public License 2.0|
-|charset-normalizer|3.3.2|MIT|
-|gitdb|4.0.11|BSD|
-|GitPython|3.1.43|New BSD|
-|idna|3.7|BSD|
-|PyYAML|6.0.1|MIT|
+|certifi|2025.1.31|Mozilla Public License 2.0|
+|charset-normalizer|3.4.1|MIT|
+|gitdb|4.0.12|BSD|
+|GitPython|3.1.44|New BSD|
+|idna|3.10|BSD|
+|PyYAML|6.0.2|MIT|
 |requests|2.32.3|Apache 2.0|
-|smmap|5.0.1|BSD|
+|setuptools|65.5.1|MIT|
+|smmap|5.0.2|New BSD|
 |str2bool|1.1|BSD|
-|types-PyYAML|6.0.12.20240724|Apache 2.0|
-|types-requests|2.32.0.20240712|Apache 2.0|
-|types-setuptools|71.1.0.20240726|Apache 2.0|
-|urllib3|2.2.2|MIT|
+|types-PyYAML|6.0.12.20241230|Apache 2.0|
+|types-requests|2.32.0.20250306|Apache 2.0|
+|types-setuptools|76.0.0.20250313|Apache 2.0|
+|urllib3|2.0.7|MIT|
 ## Workflows
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
