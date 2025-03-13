@@ -10,7 +10,6 @@
 |idna|3.10|BSD|
 |PyYAML|6.0.2|MIT|
 |requests|2.32.3|Apache 2.0|
-|setuptools|65.5.1|MIT|
 |smmap|5.0.2|New BSD|
 |str2bool|1.1|BSD|
 |types-PyYAML|6.0.12.20241230|Apache 2.0|
@@ -23,5 +22,5 @@
 |github/codeql-action|v1|MIT License|
 |irongut/CodeCoverageSummary|v1.3.0|MIT License|
 |mikepenz/action-junit-report|v4|Apache License 2.0|
-|pre-commit/action|v3.0.0|MIT License|
+|pre-commit/action|v3.0.1|MIT License|
 |rickstaa/action-create-tag|v1|MIT License|
