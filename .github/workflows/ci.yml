@@ -42,7 +42,7 @@ jobs:
           pip install -r src/requirements.txt
 
       - name: Run Linters
-        uses: pre-commit/action@v3.0.0
+        uses: pre-commit/action@v3.0.1
 
   unit-test:
     name: "Run unit tests"
