@@ -15,7 +15,6 @@
 |str2bool|1.1|BSD|
 |types-PyYAML|6.0.12.20241230|Apache 2.0|
 |types-requests|2.32.0.20250306|Apache 2.0|
-|types-setuptools|76.0.0.20250313|Apache 2.0|
 |urllib3|2.0.7|MIT|
 ## Workflows
 | Dependency | Version | License |
