@@ -48,7 +48,7 @@ def get_args():
     parser.add_argument(
         "config_file_path",
         type=str,
-        help="Path to the license check configuration." "(Relative to repository root)",
+        help="Path to the license check configuration (relative to repository root)",
     )
     parser.add_argument(
         "--github-token",

@@ -14,7 +14,6 @@
 
 """Unit tests for checklicenses."""
 
-
 from licensevalidator.checklicenses import check_licenses
 from licensevalidator.lib.dependency import DependencyInfo
 

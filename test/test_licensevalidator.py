@@ -14,7 +14,6 @@
 
 """Integration tests for license validator."""
 
-
 from licensevalidator.licensevalidator import validate_used_licenses
 
 
