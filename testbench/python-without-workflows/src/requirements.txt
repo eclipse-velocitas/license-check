@@ -1,2 +1,5 @@
-yarl==1.9.4
+# Pin all versions to enable stable test execution
+idna==3.7
+multidict==6.0.5
 six==1.16.0
+yarl==1.9.4
