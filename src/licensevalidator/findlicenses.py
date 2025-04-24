@@ -126,7 +126,7 @@ def __use_conan_profile_if_present(conan_profile_file: str):
         shutil.copyfile(conan_profile_file, conan2_default_profile_file)
         if not os.path.isfile(conan2_default_profile_file):
             raise FileNotFoundError(
-                f'Failed to use Conan profile file "{conan_profile_file}"!'
+                f'Failed to use Conan2 profile file "{conan_profile_file}"!'
             )
 
 
@@ -184,14 +184,15 @@ def find_licenses(
                 package_managers=["cargo"],
             ),
         ),
-        (
-            "c++",
-            lambda config: __get_cpp_licenses(
-                project_root,
-                config.get("path"),
-                config.get("cpp-conan-included-profile-files"),
-            ),
-        ),
+        # Disable Conan scan - not working yet - enable once fixed
+        # (
+        #     "c++",
+        #     lambda config: __get_cpp_licenses(
+        #         project_root,
+        #         config.get("path"),
+        #         config.get("cpp-conan-included-profile-files"),
+        #     ),
+        # ),
         (
             "JavaScript",
             lambda config: execute_license_finder(
