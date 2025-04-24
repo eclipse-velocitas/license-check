@@ -112,6 +112,23 @@ def __use_conan_profile_if_present(conan_profile_file: str):
                 f'Failed to use Conan profile file "{conan_profile_file}"!'
             )
 
+        conan2_home_dir = os.environ.get("CONAN_HOME")
+        if not conan2_home_dir:
+            conan2_home_dir = os.environ.get("HOME")
+            if not conan2_home_dir:
+                conan2_home_dir = "/root"
+            os.path.join(conan2_home_dir, ".conan2")
+        conan2_default_profile_file = os.path.join(
+            conan2_home_dir, "profiles", "default"
+        )
+
+        os.makedirs(os.path.dirname(conan2_default_profile_file), exist_ok=True)
+        shutil.copyfile(conan_profile_file, conan2_default_profile_file)
+        if not os.path.isfile(conan2_default_profile_file):
+            raise FileNotFoundError(
+                f'Failed to use Conan profile file "{conan_profile_file}"!'
+            )
+
 
 def sort_dependencies(deps: list[DependencyInfo]) -> list[DependencyInfo]:
     """Sort the passed DependencyInfo list by name 1st and version 2nd
