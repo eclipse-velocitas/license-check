@@ -185,6 +185,7 @@ def find_licenses(
             ),
         ),
         # Disable Conan scan - not working yet - enable once fixed
+        # GitHub issue: https://github.com/pivotal/LicenseFinder/issues/1057
         # (
         #     "c++",
         #     lambda config: __get_cpp_licenses(
