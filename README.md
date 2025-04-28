@@ -6,7 +6,7 @@ Dependencies are detected using the respective languages' package manager.
 ## Supported Languages
 
 * Python3 via pip
-* CPP via Conan
+* CPP via Conan (currently disabled due to bugs in Pivotal License Finder, see below)
 * Rust via Cargo
 * JavaScript via NPM
 
@@ -104,7 +104,12 @@ scan-dirs:
 
 ### Limitations
 
-The currently used version (v7.0.1) of the Pivotal License Finder has limited support for the Conan Package Manager:
+The support of the Conan C++ package manager is disabled for time being:
+
+The currently used version (v7.2.1) of the Pivotal License Finder has a bug regarding support of Conan 2,
+see https://github.com/pivotal/LicenseFinder/issues/1057.
+
+The previously used version (v7.0.1) of the Pivotal License Finder has limited support for the Conan Package Manager:
 * No direct support of conanfile.py; as a workaround you can add an empty conanfile.txt aside of your conanfile.py.
 * It expects a file called "LICENSE*" in some subfolder of the package. If this is not present the scan will fail.
 * It internally uses "conan install" to determine the dependencies, which tries to download those from Conan-Center.
