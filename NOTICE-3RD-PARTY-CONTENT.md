@@ -4,7 +4,7 @@
 | Dependency | Version | License |
 |:-----------|:-------:|--------:|
 |certifi|2025.4.26|Mozilla Public License 2.0|
-|charset-normalizer|3.4.1|MIT|
+|charset-normalizer|3.4.2|MIT|
 |gitdb|4.0.12|BSD|
 |GitPython|3.1.44|New BSD|
 |idna|3.10|BSD|

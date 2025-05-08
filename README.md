@@ -106,10 +106,10 @@ scan-dirs:
 
 The support of the Conan C++ package manager is disabled for time being:
 
-The currently used version (v7.2.1) of the Pivotal License Finder basically does support Conan 2 but has a bug 
+The currently used version (v7.2.1) of the Pivotal License Finder basically does support Conan 2 but has a bug
 (https://github.com/pivotal/LicenseFinder/issues/1057) reuslting in an endless loop while scanning a directory
 containing a conanfile which is Connan 2 based. That's the reason while we currently have completely commented out
-the call of that part of the finder (file src/licensevalidator/findlicenses.py). 
+the call of that part of the finder (file src/licensevalidator/findlicenses.py).
 
 The previously used version (v7.0.1) of the Pivotal License Finder has limited support for the Conan Package Manager:
 * No direct support of conanfile.py; as a workaround you can add an empty conanfile.txt aside of your conanfile.py.
