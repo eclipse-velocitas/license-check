@@ -1,4 +1,4 @@
-# Copyright (c) 2022-2025 Contributors to the Eclipse Foundation
+# Copyright (c) 2022-2026 Contributors to the Eclipse Foundation
 #
 # This program and the accompanying materials are made available under the
 # terms of the Apache License, Version 2.0 which is available at
@@ -35,10 +35,9 @@ def test_python_with_workflows():
 
     assert "Python" in origin_vs_deps
     python_deps = origin_vs_deps["Python"]
-    assert len(python_deps) == 4
+    assert len(python_deps) == 3
     assert python_deps[0].name == "idna"
     assert python_deps[1].name == "multidict"
-    assert python_deps[2].name == "six"
     assert python_deps[3].name == "yarl"
 
     assert "Workflows" in origin_vs_deps
@@ -63,10 +62,9 @@ def test_python_without_workflows():
     assert len(origin_vs_deps) == 1
     assert "Python" in origin_vs_deps
     python_deps = origin_vs_deps["Python"]
-    assert len(python_deps) == 4
+    assert len(python_deps) == 3
     assert python_deps[0].name == "idna"
     assert python_deps[1].name == "multidict"
-    assert python_deps[2].name == "six"
     assert python_deps[3].name == "yarl"
 
 

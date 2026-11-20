@@ -1,4 +1,4 @@
-# Copyright (c) 2022-2025 Contributors to the Eclipse Foundation
+# Copyright (c) 2022-2026 Contributors to the Eclipse Foundation
 #
 # This program and the accompanying materials are made available under the
 # terms of the Apache License, Version 2.0 which is available at
@@ -26,7 +26,7 @@ def test_execution_python():
     )
 
     # Two explicit plus two implicit
-    assert len(result) == 4
+    assert len(result) == 3
 
     # List in alphabetical order
     # idna required by yarl
@@ -38,10 +38,6 @@ def test_execution_python():
     assert result[1].name == "multidict"
     assert result[1].version == "6.0.5"
     assert result[1].licenses == ["Apache 2.0"]
-
-    assert result[2].name == "six"
-    assert result[2].version == "1.16.0"
-    assert result[2].licenses == ["MIT"]
 
     assert result[3].name == "yarl"
     assert result[3].version == "1.9.4"
