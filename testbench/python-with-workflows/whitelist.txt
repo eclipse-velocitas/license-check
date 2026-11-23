@@ -1,3 +1,5 @@
 Apache 2.0
 MIT
+Mozilla Public License 2.0
 BSD
+New BSD
