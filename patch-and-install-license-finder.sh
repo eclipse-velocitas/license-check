@@ -34,4 +34,4 @@ gem build $GEM_NAME.gemspec
 read -p "Press enter to continue"
 
 echo "### INSTALL ###"
-sudo gem install ./$GEM_NAME-$GEM_VERSION.gem
+gem install ./$GEM_NAME-$GEM_VERSION.gem
