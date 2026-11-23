@@ -34,7 +34,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Install required packages
         run: |
@@ -46,12 +46,12 @@ jobs:
 
   unit-test:
     name: "Run unit tests"
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-26.04
     container: mcr.microsoft.com/vscode/devcontainers/python:3.15
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Install required packages
         run: |
@@ -59,7 +59,7 @@ jobs:
           pip install pytest pytest-cov
           su vscode -c "umask 0002 && . /usr/local/share/nvm/nvm.sh && nvm install lts/* 2>&1"
           apt-get update && apt-get install -y ruby
-          gem install license_finder && gembin=`(gem env | sed -n "s/.*EXECUTABLE DIRECTORY: \(.*\)/\1/p")`
+          ./patch-and-install-license-finder.sh && gembin=`(gem env | sed -n "s/.*EXECUTABLE DIRECTORY: \(.*\)/\1/p")`
           export PATH=$gembin:$PATH
           curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh -s -- -y
 
