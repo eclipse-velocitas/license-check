@@ -4,17 +4,17 @@ diff --color -crB license_finder-7.2.1/bin/license_finder_pip.py "license_finder
 ***************
 *** 18,24 ****
           from pip.download import PipSession
-  
+
   from pip._vendor import pkg_resources
 ! from pip._vendor.six import print_
-  
-  
+
+
   reqs = []
 --- 18,24 ----
           from pip.download import PipSession
-  
+
   from pip._vendor import pkg_resources
 ! from six import print_
-  
-  
+
+
   reqs = []

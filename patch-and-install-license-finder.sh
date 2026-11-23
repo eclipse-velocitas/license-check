@@ -18,13 +18,20 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 GEM_NAME=license_finder
 GEM_VERSION=7.2.1
 
-mkdir patch_$GEM_NAME&& cd $_
+mkdir -p patch_$GEM_NAME && cd $_
 
-gem fetch $GEM_NAME -v $GEM_VERSION
-gem unpack $GEM_NAME-$GEM_VERSION.gem
+echo "### CLONE ###"
+git clone --depth 1 --branch v$GEM_VERSION https://github.com/pivotal/LicenseFinder.git
+cd LicenseFinder
+read -p "Press enter to continue"
 
-cd $GEM_NAME-$GEM_VERSION
+echo "### PATCH ###"
 patch -p1 -i $SCRIPT_DIR/$GEM_NAME-$GEM_VERSION.patch
+read -p "Press enter to continue"
 
+echo "### BUILD ###"
 gem build $GEM_NAME.gemspec
-gem install ./$GEM_NAME-$GEM_VERSION.gem
+read -p "Press enter to continue"
+
+echo "### INSTALL ###"
+sudo gem install ./$GEM_NAME-$GEM_VERSION.gem
