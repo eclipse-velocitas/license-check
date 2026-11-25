@@ -22,7 +22,7 @@ with open("src/requirements.txt", encoding="utf-8") as reqs_file:
 
 setuptools.setup(
     name="licensevalidator",
-    version="1.3.1",
+    version="1.4.0",
     description="A validator for dependency licenses",
     long_description=long_description,
     long_description_content_type="text/markdown",
