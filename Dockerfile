@@ -13,7 +13,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 
-FROM python:3.10.14-slim
+FROM python:3.10-slim
 
 ARG DEBIAN_FRONTEND=noninteractive
 
