@@ -34,7 +34,8 @@ RUN pip3 install --upgrade pip && pip3 --disable-pip-version-check --no-cache-di
 # [Optional] Uncomment this line to install global node packages.
 # RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
 
-RUN apt-get update && apt-get install -y ruby && gem install license_finder && gembin=`(gem env | sed -n "s/.*EXECUTABLE DIRECTORY: \(.*\)/\1/p")` && export PATH=$gembin:$PATH
+COPY patch-and-install-license-finder.sh license_finder-7.2.1.patch /tmp/patch/
+RUN apt-get update && apt-get install -y ruby && /tmp/patch/patch-and-install-license-finder.sh && gembin=`(gem env | sed -n "s/.*EXECUTABLE DIRECTORY: \(.*\)/\1/p")` && export PATH=$gembin:$PATH
 
 RUN curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh -s -- -y
 

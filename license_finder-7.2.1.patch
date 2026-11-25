@@ -1,0 +1,20 @@
+diff --color -crB license_finder-7.2.1/bin/license_finder_pip.py "license_finder-7.2.1 copy/bin/license_finder_pip.py"
+*** license_finder-7.2.1/bin/license_finder_pip.py	2026-11-23 10:14:25.398530388 +0000
+--- license_finder-7.2.1_patch/bin/license_finder_pip.py	2026-11-23 10:16:52.375877652 +0000
+***************
+*** 18,24 ****
+          from pip.download import PipSession
+
+  from pip._vendor import pkg_resources
+! from pip._vendor.six import print_
+
+
+  reqs = []
+--- 18,24 ----
+          from pip.download import PipSession
+
+  from pip._vendor import pkg_resources
+! from six import print_
+
+
+  reqs = []

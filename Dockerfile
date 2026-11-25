@@ -18,12 +18,13 @@ FROM python:3.10.14-slim
 ARG DEBIAN_FRONTEND=noninteractive
 
 COPY ./src/ /
+COPY patch-and-install-license-finder.sh license_finder-7.2.1.patch /tmp/patch/
 
 # Update packages & install license finder
 RUN apt update \
     && apt install -y git \
     && apt install -y ruby \
-    && gem install license_finder \
+    && /tmp/patch/patch-and-install-license-finder.sh \
     && pip3 install -r /requirements.txt
 
 # Install conan to handle c++ dependencies
