@@ -1,4 +1,4 @@
-# Copyright (c) 2022-2025 Contributors to the Eclipse Foundation
+# Copyright (c) 2022-2026 Contributors to the Eclipse Foundation
 #
 # This program and the accompanying materials are made available under the
 # terms of the Apache License, Version 2.0 which is available at
@@ -16,7 +16,7 @@
 
 import os
 import re
-from typing import Dict, Optional, TextIO
+from typing import TextIO
 
 import requests
 import yaml
@@ -28,7 +28,7 @@ from licensevalidator.lib.dependency import DependencyInfo
 class _ActionInfo:
     """Bundles all infos for a single Github action."""
 
-    def __init__(self, repository: str, relative_path: Optional[str], version: str):
+    def __init__(self, repository: str, relative_path: str | None, version: str):
         """Create a new instance.
 
         Args:
@@ -78,9 +78,9 @@ def _read_used_actions_from_yaml(text_io: TextIO) -> set[DependencyInfo]:
     used_actions: set[DependencyInfo] = set()
     data = yaml.load(text_io, Loader=SafeLoader)
     if "jobs" in data:
-        jobs: Dict = data["jobs"]
+        jobs: dict = data["jobs"]
 
-        for _, job_settings in jobs.items():
+        for job_settings in jobs.values():
             if "steps" not in job_settings:
                 continue
 
@@ -152,8 +152,8 @@ def _get_used_actions(project_root: str) -> set[DependencyInfo]:
 
 
 def __get_license_for_action(
-    action_repo: str, github_token: str = None
-) -> Optional[str]:
+    action_repo: str, github_token: str | None = None
+) -> str | None:
     """Get the license for a single github action.
 
     Args:
@@ -184,7 +184,7 @@ def __get_license_for_action(
 
 
 def get_workflow_dependencies(
-    project_root: str, github_token: str = None
+    project_root: str, github_token: str | None = None
 ) -> list[DependencyInfo]:
     """Get all dependencies used by all workflows.
 

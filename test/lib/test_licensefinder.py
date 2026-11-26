@@ -1,4 +1,4 @@
-# Copyright (c) 2022-2025 Contributors to the Eclipse Foundation
+# Copyright (c) 2022-2026 Contributors to the Eclipse Foundation
 #
 # This program and the accompanying materials are made available under the
 # terms of the Apache License, Version 2.0 which is available at
@@ -29,20 +29,19 @@ def test_execution_python():
     assert len(result) == 4
 
     # List in alphabetical order
-    # idna required by yarl
-    assert result[0].name == "idna"
-    assert result[0].version == "3.7"
-    assert result[0].licenses == ["BSD"]
+    assert result[0].name == "certifi"
+    assert result[0].version == "2026.11.20"
+    assert result[0].licenses == ["Mozilla Public License 2.0"]
 
-    # multidict required by yarl
-    assert result[1].name == "multidict"
-    assert result[1].version == "6.0.5"
-    assert result[1].licenses == ["Apache 2.0"]
+    assert result[1].name == "gitdb"
+    assert result[1].version == "4.0.12"
+    assert result[1].licenses == ["BSD"]
 
-    assert result[2].name == "six"
-    assert result[2].version == "1.16.0"
-    assert result[2].licenses == ["MIT"]
+    assert result[2].name == "propcache"
+    assert result[2].version == "0.5.4"
+    assert result[2].licenses == ["Apache 2.0"]
 
-    assert result[3].name == "yarl"
-    assert result[3].version == "1.9.4"
-    assert result[3].licenses == ["Apache 2.0"]
+    # smmap required by gitdb
+    assert result[3].name == "smmap"
+    assert result[3].version == "5.0.3"
+    assert result[3].licenses == ["New BSD"]

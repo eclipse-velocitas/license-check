@@ -1,4 +1,4 @@
-# Copyright (c) 2022-2025 Contributors to the Eclipse Foundation
+# Copyright (c) 2022-2026 Contributors to the Eclipse Foundation
 #
 # This program and the accompanying materials are made available under the
 # terms of the Apache License, Version 2.0 which is available at
@@ -27,7 +27,7 @@ def validate_used_licenses(
     project_root: str,
     scan_directories_config: list[Any],
     whitelist_file_path: str,
-    github_token: str = None,
+    github_token: str | None = None,
 ) -> tuple[bool, dict[str, list[DependencyInfo]]]:
     """Run the license validation.
 

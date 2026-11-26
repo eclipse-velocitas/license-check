@@ -1,4 +1,4 @@
-# Copyright (c) 2023-2025 Contributors to the Eclipse Foundation
+# Copyright (c) 2023-2026 Contributors to the Eclipse Foundation
 #
 # This program and the accompanying materials are made available under the
 # terms of the Apache License, Version 2.0 which is available at
@@ -22,7 +22,7 @@ with open("src/requirements.txt", encoding="utf-8") as reqs_file:
 
 setuptools.setup(
     name="licensevalidator",
-    version="1.3.0",
+    version="1.3.1",
     description="A validator for dependency licenses",
     long_description=long_description,
     long_description_content_type="text/markdown",

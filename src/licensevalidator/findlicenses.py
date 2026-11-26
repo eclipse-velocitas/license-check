@@ -1,4 +1,4 @@
-# Copyright (c) 2022-2025 Contributors to the Eclipse Foundation
+# Copyright (c) 2022-2026 Contributors to the Eclipse Foundation
 #
 # This program and the accompanying materials are made available under the
 # terms of the Apache License, Version 2.0 which is available at
@@ -16,7 +16,7 @@
 
 import os
 import shutil
-from typing import Any, Optional
+from typing import Any
 
 from licensevalidator.lib.dependency import DependencyInfo
 from licensevalidator.lib.licensefinder import execute_license_finder
@@ -55,7 +55,7 @@ def __get_python_licenses(
 
 
 def __get_cpp_licenses(
-    project_root: str, scan_dir: str, conan_profile_files: Optional[list[str]]
+    project_root: str, scan_dir: str, conan_profile_files: list[str] | None
 ) -> set[DependencyInfo]:
     dependencies: set[DependencyInfo] = set()
 
@@ -147,7 +147,7 @@ def sort_dependencies(deps: list[DependencyInfo]) -> list[DependencyInfo]:
 def find_licenses(
     project_root: str,
     scan_directories_config: list[Any],
-    github_token: str = None,
+    github_token: str | None = None,
 ) -> dict[str, list[DependencyInfo]]:
     """Find all licenses used in the software project.
 
@@ -215,7 +215,7 @@ def find_licenses(
                 deps = sort_dependencies(language_check[1](scan_directory_config))
                 if len(deps) > 0:
                     origin_to_deps[language_check[0]] = deps
-            except Exception as err:
+            except (LookupError, TypeError) as err:
                 print(f"Found an issue!: {err}")
 
     for project_check in project_checks:

@@ -1,4 +1,4 @@
-# Copyright (c) 2023-2025 Contributors to the Eclipse Foundation
+# Copyright (c) 2023-2026 Contributors to the Eclipse Foundation
 #
 # This program and the accompanying materials are made available under the
 # terms of the Apache License, Version 2.0 which is available at
@@ -13,17 +13,18 @@
 # SPDX-License-Identifier: Apache-2.0
 
 
-FROM python:3.10.14-slim
+FROM python:3.10-slim
 
 ARG DEBIAN_FRONTEND=noninteractive
 
 COPY ./src/ /
+COPY patch-and-install-license-finder.sh license_finder-7.2.1.patch /tmp/patch/
 
 # Update packages & install license finder
 RUN apt update \
     && apt install -y git \
     && apt install -y ruby \
-    && gem install license_finder \
+    && /tmp/patch/patch-and-install-license-finder.sh \
     && pip3 install -r /requirements.txt
 
 # Install conan to handle c++ dependencies

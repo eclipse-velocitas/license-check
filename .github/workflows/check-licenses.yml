@@ -1,4 +1,4 @@
-# Copyright (c) 2022-2025 Contributors to the Eclipse Foundation
+# Copyright (c) 2022-2026 Contributors to the Eclipse Foundation
 #
 # This program and the accompanying materials are made available under the
 # terms of the Apache License, Version 2.0 which is available at
@@ -27,14 +27,14 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Clone License Check Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: eclipse-velocitas/license-check
           path: .github/actions/license-check
-          ref: v1.2
+          ref: v1.3
 
       - name: Run License Checker
         uses: ./.github/actions/license-check
