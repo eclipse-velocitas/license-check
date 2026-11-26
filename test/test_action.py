@@ -13,9 +13,9 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import os
+import pathlib
 import shutil
 import subprocess
-import pathlib
 
 from git import Repo
 
@@ -47,7 +47,8 @@ def test_no_commit_if_not_dirty():
             "--add",
             "safe.directory",
             repo_root,
-        ]
+        ],
+        check=False,
     )
 
     # create file
@@ -75,7 +76,8 @@ def test_no_commit_if_not_dirty():
                 "--add",
                 "safe.directory",
                 ROOT_DIR,
-            ]
+            ],
+            check=False,
         )
 
 
@@ -95,7 +97,8 @@ def test_commit_if_dirty():
             "--add",
             "safe.directory",
             repo_root,
-        ]
+        ],
+        check=False,
     )
 
     # create file
@@ -127,5 +130,6 @@ def test_commit_if_dirty():
                 "--add",
                 "safe.directory",
                 ROOT_DIR,
-            ]
+            ],
+            check=False,
         )

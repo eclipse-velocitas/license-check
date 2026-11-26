@@ -14,7 +14,7 @@
 
 """Provides methods and classes to check licenses of a software project."""
 
-from io import open
+import builtins
 
 from licensevalidator.lib.dependency import DependencyInfo
 
@@ -58,12 +58,11 @@ class LicenseValidator:
         # false                true        false
         # true                 false       false
         # false                false       true
-        if not contained_in_list:
+        if not contained_in_list and license_name is not None:
             # give it another try without the " License" suffix
-            if license_name is not None:
-                contained_in_list = (
-                    license_name.replace(" License", "") in self.licenses_list
-                )
+            contained_in_list = (
+                license_name.replace(" License", "") in self.licenses_list
+            )
         return contained_in_list == self.is_licenses_list_inclusive
 
 
@@ -78,7 +77,7 @@ def read_license_list(path: str) -> list[str]:
         list[str]: The contents of the license list.
     """
     result = []
-    with open(path, "r", encoding="utf-8") as file:
+    with builtins.open(path, "r", encoding="utf-8") as file:
         while (line := file.readline()) != "":
             result.append(line.strip())
 

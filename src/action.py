@@ -127,7 +127,7 @@ def read_config_file(config_file_path: str) -> Any:
                 return yaml.safe_load(file)
             except yaml.YAMLError as err:
                 print(f"::error::{err}")
-    except Exception as file_err:
+    except OSError as file_err:
         print(f"::error::{file_err}")
 
     return None

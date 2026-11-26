@@ -15,6 +15,7 @@
 """Unit tests for dependency."""
 
 import pytest
+
 from licensevalidator.lib.dependency import DependencyInfo
 
 
